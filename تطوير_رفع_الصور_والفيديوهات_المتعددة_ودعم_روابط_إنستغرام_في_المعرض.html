@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نادي جسور الإعلام والاتصال – جامعة عمار ثليجي بالأغواط</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Cairo', 'Inter', sans-serif;
+      background-color: #09090b;
+      color: #f4f4f5;
+    }
+    .glass-panel {
+      background: rgba(24, 24, 27, 0.72);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-member-card {
+      background: linear-gradient(180deg, rgba(24, 24, 27, 0.88) 0%, rgba(9, 9, 11, 0.94) 100%);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(239, 68, 68, 0.24);
+    }
+    .glass-btn {
+      background: rgba(220, 38, 38, 0.22);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(248, 113, 113, 0.35);
+    }
+    .glass-btn:hover {
+      background: rgba(220, 38, 38, 0.42);
+    }
+    .bridges-glow {
+      text-shadow: 0 0 24px rgba(239, 68, 68, 0.35);
+    }
+    .halftone-red {
+      background-image: radial-gradient(rgba(239, 68, 68, 0.22) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-red-600 selection:text-white">
+
+  <!-- شريط التنقل العلوي -->
+  <header class="sticky top-0 z-40 bg-zinc-950/85 backdrop-blur-md border-b border-red-900/35">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+      <a href="#hero" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-red-600/15 border border-red-500/35 flex items-center justify-center overflow-hidden">
+          <img id="headerCustomLogoImg" src="" alt="شعار النادي" class="hidden w-full h-full object-contain" />
+          <svg id="headerDefaultLogoSvg" viewBox="0 0 64 40" class="w-8 h-6" aria-hidden="true">
+            <path d="M28 4 L31 4 L33 32 L26 32 Z" fill="#ef4444"/>
+            <path d="M4 30 Q16 20 30 6 Q44 20 60 30" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+            <rect x="3" y="30" width="58" height="4" rx="1.5" fill="#dc2626"/>
+          </svg>
+        </div>
+        <div>
+          <p id="headerClubNameAr" class="text-sm font-black text-white leading-tight">نادي جسور الإعلام والاتصال</p>
+          <p id="headerUniSubtitle" class="text-[11px] text-red-400 font-semibold">جامعة عمار ثليجي – الأغواط</p>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-5 text-xs font-bold text-zinc-300">
+        <a href="#hero" class="hover:text-red-400 transition">الرئيسية</a>
+        <a href="#board" class="hover:text-red-400 transition">المكتب التنفيذي</a>
+        <a href="#audiovisual-hub" class="hover:text-red-400 transition">المعرض السمعي البصري</a>
+        <a href="#workshops-hub" class="hover:text-red-400 transition">الورشات التكوينية</a>
+        <a href="#join" class="hover:text-red-400 transition">الانضمام</a>
+        <a href="#official-channels" class="hover:text-red-400 transition">التواصل</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <span id="headerBrandMain" class="hidden sm:inline text-xs font-black tracking-wider text-white">BRIDGES</span>
+        <span id="headerBrandSub" class="hidden sm:inline text-[10px] font-bold tracking-widest text-red-400">MEDIA CLUB</span>
+        <button id="adminToggleBtn" type="button" class="px-3.5 py-1.5 rounded-xl glass-btn text-white text-xs font-extrabold transition">
+          وضع المشرف
+        </button>
+      </div>
+    </div>
+
+    <!-- شريط حالة المشرف والوصول السريع للوحة الإعدادات والطلبات -->
+    <div id="adminStatusBanner" class="hidden bg-red-950/90 border-t border-red-500/40 px-4 py-2">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs">
+        <span class="font-extrabold text-red-200">وضع المشرف مفعل — يمكنك تعديل المحتوى والصور والأعضاء والورشات والروابط.</span>
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="toggleSiteEditorBtn" type="button" class="px-3 py-1 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold">إعدادات الموقع</button>
+          <button id="jumpToApplicationsBtn" type="button" class="px-3 py-1 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-red-500/30 text-red-200 font-bold">
+            طلبات الانضمام (<span id="adminAppsCountBadge">0</span>)
+          </button>
+          <button id="adminLogoutBtn" type="button" class="px-3 py-1 rounded-lg bg-black/70 hover:bg-black text-zinc-300 font-bold">خروج</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- لوحة إعدادات الموقع العامة للمشرف -->
+  <div id="adminGlobalSettingsPanel" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <div class="glass-panel rounded-3xl p-6 border border-red-500/40 space-y-6 text-xs">
+      <div class="flex items-center justify-between border-b border-red-900/40 pb-3">
+        <div>
+          <h2 class="text-base font-extrabold text-white">لوحة إعدادات الموقع والهوية البصرية</h2>
+          <p class="text-zinc-400 mt-0.5">تحكم في النصوص، الشعارات، خلفية الفريق، الروابط الرسمية، والرمز السري.</p>
+        </div>
+        <span id="globalSettingsFeedback" class="hidden font-bold text-emerald-400"></span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">اسم النادي بالعربية</label>
+          <input id="editClubNameAr" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">الاسم الإنجليزي الرئيسي</label>
+          <input id="editBrandMain" type="text" dir="ltr" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">الاسم الإنجليزي الفرعي</label>
+          <input id="editBrandSub" type="text" dir="ltr" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">شارة القسم الرئيسي</label>
+          <input id="editHeroBadge" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">عنوان القسم الرئيسي</label>
+          <input id="editHeroTitle" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">الموسم الجامعي</label>
+          <input id="editAcademicYear" type="text" dir="ltr" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">اسم الجامعة</label>
+          <input id="editUniName" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">الموقع الجغرافي للجامعة</label>
+          <input id="editUniLocation" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">البريد الإلكتروني الرسمي للنادي</label>
+          <input id="editClubEmail" type="email" dir="ltr" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div class="sm:col-span-2 lg:col-span-3">
+          <label class="block font-bold text-zinc-300 mb-1">وصف القسم الرئيسي</label>
+          <input id="editHeroDesc" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">صاحب كلمة الترحيب</label>
+          <input id="editPresidentWelcomeName" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block font-bold text-zinc-300 mb-1">نص كلمة رئيس النادي</label>
+          <input id="editPresidentWelcomeMsg" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+      </div>
+
+      <!-- عناوين الأقسام والروابط الاجتماعية -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2 border-t border-red-900/35">
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">عنوان المكتب التنفيذي</label>
+          <input id="editBoardTitle" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">عنوان المعرض السمعي البصري</label>
+          <input id="editMediaTitle" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">عنوان خانة الصور</label>
+          <input id="editPhotoBoxTitle" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">عنوان خانة الفيديوهات</label>
+          <input id="editVideoBoxTitle" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">عنوان استمارة الانضمام</label>
+          <input id="editJoinTitle" type="text" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">رابط فيسبوك</label>
+          <input id="editFacebookUrl" type="text" dir="ltr" placeholder="https://facebook.com/..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">رابط إنستغرام</label>
+          <input id="editInstagramUrl" type="text" dir="ltr" placeholder="https://instagram.com/..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">رابط تيك توك</label>
+          <input id="editTiktokUrl" type="text" dir="ltr" placeholder="https://tiktok.com/@..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div>
+          <label class="block font-bold text-zinc-300 mb-1">رابط يوتيوب</label>
+          <input id="editYoutubeUrl" type="text" dir="ltr" placeholder="https://youtube.com/@..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-2" />
+        </div>
+        <div class="sm:col-span-3 flex items-center gap-2 pt-2">
+          <input id="editShowComingSoonSocials" type="checkbox" class="rounded border-zinc-700 bg-zinc-950 text-red-600" />
+          <label for="editShowComingSoonSocials" class="text-zinc-300 font-bold">إظهار وسم «قريباً» للمنصات غير المضافة بعد</label>
+        </div>
+      </div>
+
+      <!-- الشعارات وصورة خلفية الفريق -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-red-900/35">
+        <div class="p-3.5 rounded-2xl bg-black/50 border border-zinc-800 space-y-2">
+          <p class="font-bold text-white">شعار النادي المخصص</p>
+          <input id="uploadCustomClubLogo" type="file" accept="image/*" class="block w-full text-[11px] text-zinc-400" />
+          <button id="resetClubLogoBtn" type="button" class="px-3 py-1 rounded-lg bg-zinc-800 text-zinc-200 font-bold">استعادة الافتراضي</button>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-black/50 border border-zinc-800 space-y-2">
+          <p class="font-bold text-white">شعار الجامعة المخصص</p>
+          <input id="uploadCustomUniLogo" type="file" accept="image/*" class="block w-full text-[11px] text-zinc-400" />
+          <button id="resetUniLogoBtn" type="button" class="px-3 py-1 rounded-lg bg-zinc-800 text-zinc-200 font-bold">استعادة الافتراضي</button>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-black/50 border border-zinc-800 space-y-2">
+          <p class="font-bold text-white">صورة خلفية الفريق</p>
+          <input id="uploadTopOverlayPhoto" type="file" accept="image/*" class="block w-full text-[11px] text-zinc-400" />
+          <input id="topOverlayPhotoUrlInput" type="url" dir="ltr" placeholder="أو رابط صورة مباشر..." class="w-full rounded-lg bg-zinc-950 border border-zinc-700 text-white px-2.5 py-1 text-[11px]" />
+          <button id="resetTopOverlayPhotoBtn" type="button" class="px-3 py-1 rounded-lg bg-zinc-800 text-zinc-200 font-bold">استعادة الافتراضي</button>
+          <p id="topOverlayUploadStatus" class="hidden text-[11px] font-bold text-emerald-400"></p>
+        </div>
+      </div>
+
+      <!-- رمز المشرف والنسخ الاحتياطي -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 pt-2 border-t border-red-900/35">
+        <div class="p-4 rounded-2xl bg-black/50 border border-zinc-800 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <p class="font-bold text-white">رمز المشرف السري الحالي: <span id="currentAdminPasscodeLabel" class="text-red-400 font-mono">JUSUR2026</span></p>
+            <label class="flex items-center gap-1.5 text-[11px] text-zinc-300 cursor-pointer">
+              <input id="toggleShowPasscodeCb" type="checkbox" class="rounded border-zinc-700 bg-zinc-950" />
+              <span>إظهار الرمز</span>
+            </label>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <input id="newAdminPasscodeInput" type="password" placeholder="رمز سري جديد..." class="rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-1.5" />
+            <input id="confirmAdminPasscodeInput" type="password" placeholder="تأكيد الرمز الجديد..." class="rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-1.5" />
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="updateAdminPasscodeBtn" type="button" class="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold">تحديث الرمز</button>
+            <button id="resetDefaultPasscodeBtn" type="button" class="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-bold">افتراضي JUSUR2026</button>
+          </div>
+          <p id="passcodeAdminFeedback" class="hidden text-[11px] font-bold"></p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/50 border border-zinc-800 flex flex-col justify-between gap-3">
+          <div>
+            <p class="font-bold text-white">النسخة الاحتياطية واستعادة الضبط</p>
+            <p class="text-[11px] text-zinc-400 mt-0.5">احفظ بيانات الموقع في ملف JSON أو استعدها أو أعد ضبط المصنع.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="exportSiteDataBtn" type="button" class="px-3.5 py-1.5 rounded-xl glass-btn text-white font-bold">تصدير JSON</button>
+            <label class="cursor-pointer px-3.5 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-bold">
+              استيراد JSON
+              <input id="importSiteDataInput" type="file" accept="application/json" class="hidden" />
+            </label>
+            <button id="resetAllSiteDataBtn" type="button" class="px-3.5 py-1.5 rounded-xl bg-red-950 hover:bg-red-800 text-red-200 font-bold">إعادة ضبط المصنع</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button id="saveGlobalSettingsBtn" type="button" class="px-6 py-2.5 rounded-xl bg-gradient-to-l from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-extrabold shadow-lg shadow-red-600/25">
+          حفظ جميع التعديلات
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- القسم الرئيسي (Hero) مع صورة الفريق في الخلفية -->
+  <section id="hero" class="relative overflow-hidden py-16 sm:py-24 bg-zinc-950 border-b border-red-900/35">
+    <img id="topOverlayPhoto" src="https://placehold.co/1600x900/18181b/ef4444?text=BRIDGES+MEDIA+CLUB+TEAM" alt="فريق نادي جسور الإعلام والاتصال" class="absolute inset-0 w-full h-full object-cover object-top opacity-75 pointer-events-none select-none" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-zinc-950/40 to-black/50 pointer-events-none"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-10">
+      
+      <!-- التعريف والنصوص الرئيسية -->
+      <div class="space-y-6 text-center lg:text-right max-w-2xl w-full">
+        <span id="heroBadgeText" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-600/15 text-red-400 text-xs font-bold border border-red-500/30 shadow-inner">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          <span id="heroBadgeLabel">المنصة الإعلامية الطلابية – جامعة عمار ثليجي بالأغواط</span>
+        </span>
+
+        <h1 id="heroTitleText" class="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          نادي <span class="text-transparent bg-clip-text bg-gradient-to-l from-red-500 to-red-400">جسور</span> الإعلام والاتصال
+        </h1>
+        <p id="heroDescText" class="text-zinc-300 text-sm sm:text-base leading-relaxed">
+          فضاء جامعي لصناعة المحتوى الإعلامي، التغطيات الميدانية، والعمل الصحفي والسمعي البصري بروح الفريق والمبادرة الطلابية.
+        </p>
+
+        <!-- كلمة ترحيبية باسم رئيس النادي في الواجهة الرئيسية بحجم أوضح وبدون إطار مغلق صغير -->
+        <div class="pt-3 border-t border-red-500/25 text-right space-y-2.5">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-red-400">
+              <span class="w-2 h-2 rounded-full bg-red-500"></span>
+              كلمة رئيس النادي
+            </span>
+            <span id="presidentWelcomeAuthor" class="text-xs sm:text-sm font-extrabold text-white bg-red-600/25 border border-red-500/35 px-3 py-1 rounded-xl">
+              جودي محمد وائل – رئيس النادي
+            </span>
+          </div>
+          <p id="presidentWelcomeText" class="text-base sm:text-lg text-zinc-100 font-medium leading-relaxed">
+            أهلاً بكم جميعاً في نادي جسور الإعلام والاتصال؛ نرحب بكل طلبة الجامعة من مختلف التخصصات، فالنادي لا يشترط تخصص الإعلام والاتصال للانضمام، بل يفتح أبوابه لكل شغوف يريد التعلم والممارسة وصناعة الأثر.
+          </p>
+        </div>
+
+        <!-- صلاحية رفع صورة الفريق الخلفية مباشرة من طرف المشرف -->
+        <div id="teamCardAdminControls" class="admin-only hidden p-3.5 rounded-2xl bg-zinc-950/90 border border-red-500/35 space-y-2 text-xs max-w-md mx-auto lg:mx-0">
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-extrabold text-red-400">صلاحية المشرف: صورة خلفية الفريق</span>
+            <button id="teamCardResetPhotoBtn" type="button" class="px-2.5 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-[11px] font-bold transition">
+              حذف / افتراضي
+            </button>
+          </div>
+          <label class="block w-full cursor-pointer px-3 py-2 rounded-xl bg-red-600/20 hover:bg-red-600/35 border border-red-500/45 text-center font-extrabold text-red-200 transition">
+            اختر صورة للفريق من جهازك
+            <input id="teamCardPhotoFileInput" type="file" accept="image/*" class="hidden" />
+          </label>
+          <p id="teamCardUploadMsg" class="hidden text-[11px] font-bold text-emerald-400"></p>
+        </div>
+      </div>
+
+      <!-- حاوية متناسقة وموحدة لشعار النادي وشعار الجامعة في مكان واضح ومنظم -->
+      <div class="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col items-center justify-center gap-5 shrink-0">
+        <!-- شعار النادي الرئيسي: الجسر الأحمر + BRIDGES MEDIA CLUB فقط -->
+        <div class="w-full sm:w-72 inline-flex flex-col items-center justify-center bg-gradient-to-b from-zinc-900/90 to-black/90 backdrop-blur-md border border-red-600/40 rounded-3xl px-6 py-5 shadow-2xl shadow-red-950/40 ring-1 ring-white/5" dir="ltr">
+          <img id="heroCustomLogoImg" src="" alt="شعار النادي" class="hidden w-36 h-20 object-contain mb-1" />
+          <svg id="heroDefaultLogoSvg" viewBox="0 0 260 86" class="w-48 sm:w-52 h-auto drop-shadow-[0_4px_12px_rgba(220,38,38,0.35)]" role="img" aria-label="Bridges Media Club Logo">
+            <path d="M114 12 L119 12 L123 70 L110 70 Z" fill="#dc2626"/>
+            <rect x="112" y="25" width="9" height="3" fill="#09090b"/>
+            <rect x="111" y="40" width="11" height="3" fill="#09090b"/>
+            <!-- الكابلات المعلقة -->
+            <path d="M8 66 Q28 45 48 10 Q82 48 116 14 Q140 44 160 66" fill="none" stroke="#ef4444" stroke-width="2.2"/>
+            <path d="M22 66 L48 18 L70 66 M92 66 L116 20 L138 66" fill="none" stroke="#dc2626" stroke-width="1.3"/>
+            <path d="M34 66 L48 28 L60 66 M103 66 L116 30 L128 66" fill="none" stroke="#dc2626" stroke-width="1"/>
+            <!-- قناطر الجسر الجانبية -->
+            <path d="M154 44 H252 V68 H154 Z" fill="#dc2626"/>
+            <rect x="164" y="50" width="8" height="18" rx="1" fill="#09090b"/>
+            <rect x="180" y="50" width="8" height="18" rx="1" fill="#09090b"/>
+            <rect x="196" y="50" width="8" height="18" rx="1" fill="#09090b"/>
+            <rect x="212" y="50" width="8" height="18" rx="1" fill="#09090b"/>
+            <rect x="228" y="50" width="8" height="18" rx="1" fill="#09090b"/>
+            <!-- القاعدة والطريق -->
+            <rect x="6" y="66" width="248" height="8" rx="2" fill="#dc2626"/>
+          </svg>
+          <div class="text-center mt-1">
+            <p id="heroBrandMain" class="text-2xl font-black tracking-wider text-white bridges-glow leading-none">BRIDGES</p>
+            <p id="heroBrandSub" class="text-xs font-bold tracking-[0.35em] text-zinc-200 mt-1">MEDIA CLUB</p>
+            <span id="heroAcademicYearBadge" class="inline-block mt-2 px-3 py-0.5 rounded-full bg-red-600/20 border border-red-500/40 text-red-300 text-xs font-extrabold tracking-widest">2026-2027</span>
+          </div>
+        </div>
+
+        <!-- شعار جامعة عمار ثليجي - الأغواط متناسق بنفس العرض والأسلوب -->
+        <div class="w-full sm:w-72 relative group bg-gradient-to-b from-zinc-900/90 to-black/90 backdrop-blur-md border border-red-600/35 rounded-3xl px-6 py-5 flex flex-col items-center justify-center text-center shadow-2xl shadow-red-950/40 ring-1 ring-white/5 transition-transform duration-300 hover:-translate-y-1">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white p-1.5 shadow-xl shadow-red-600/25 ring-4 ring-red-600/20 mb-3 flex items-center justify-center overflow-hidden">
+            <img id="customUniLogoImg" src="" alt="شعار الجامعة" class="hidden w-full h-full object-contain rounded-full" />
+            <svg id="defaultUniLogoSvg" viewBox="0 0 200 200" class="w-full h-full" role="img" aria-label="شعار جامعة عمار ثليجي بالأغواط">
+              <!-- الإطار الدائري الأخضر -->
+              <circle cx="100" cy="100" r="95" fill="#ffffff" stroke="#22c55e" stroke-width="3.5"/>
+              <circle cx="100" cy="100" r="72" fill="none" stroke="#22c55e" stroke-width="2"/>
+              
+              <!-- مسارات النصوص الدائرية -->
+              <defs>
+                <path id="topArc" d="M 24,100 A 76,76 0 1,1 176,100" />
+                <path id="bottomArc" d="M 22,106 A 78,78 0 0,0 178,106" />
+              </defs>
+              <text fill="#111827" font-size="13.5" font-weight="700" font-family="Cairo, sans-serif">
+                <textPath href="#topArc" startOffset="50%" text-anchor="middle">جامعة عمار ثليجي - الأغواط</textPath>
+              </text>
+              <text fill="#111827" font-size="11.5" font-weight="800" font-family="sans-serif" letter-spacing="0.8">
+                <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">UNIVERSITY OF LAGHOUAT</textPath>
+              </text>
+
+              <!-- زخرفة جانبية خضراء -->
+              <g fill="#22c55e" stroke="#22c55e" stroke-width="1.5">
+                <circle cx="17" cy="88" r="3"/><circle cx="16" cy="100" r="3"/><circle cx="17" cy="112" r="3"/>
+                <path d="M21 75 Q14 100 21 125" fill="none"/>
+                <circle cx="183" cy="88" r="3"/><circle cx="184" cy="100" r="3"/><circle cx="183" cy="112" r="3"/>
+                <path d="M179 75 Q186 100 179 125" fill="none"/>
+              </g>
+
+              <!-- القوس الحجري الأصفر -->
+              <path d="M54 52 H146 V60 H140 V142 H125 V100 A25 25 0 0 0 75 100 V142 H60 V60 H54 Z" fill="#fef08a" stroke="#422006" stroke-width="1.3"/>
+              <line x1="56" y1="60" x2="144" y2="60" stroke="#422006" stroke-width="1.2"/>
+              <line x1="60" y1="74" x2="140" y2="74" stroke="#422006" stroke-width="1"/>
+              <line x1="60" y1="88" x2="77" y2="88" stroke="#422006" stroke-width="1"/>
+              <line x1="123" y1="88" x2="140" y2="88" stroke="#422006" stroke-width="1"/>
+              <line x1="60" y1="104" x2="75" y2="104" stroke="#422006" stroke-width="1"/>
+              <line x1="125" y1="104" x2="140" y2="104" stroke="#422006" stroke-width="1"/>
+              <line x1="60" y1="120" x2="75" y2="120" stroke="#422006" stroke-width="1"/>
+              <line x1="125" y1="120" x2="140" y2="120" stroke="#422006" stroke-width="1"/>
+
+              <!-- الشعلة الحمراء -->
+              <path d="M100 106 C88 100 90 88 100 84 C107 80 107 68 97 58 C113 66 118 88 106 102 Z" fill="#ef4444"/>
+              <path d="M99 95 C91 90 93 80 101 76 C105 73 105 66 99 60 C108 66 110 82 102 92 Z" fill="#dc2626"/>
+
+              <!-- الكتاب المفتوح / المعين والسنابل الخضراء -->
+              <polygon points="100,110 116,125 100,140 84,125" fill="#ffffff" stroke="#111827" stroke-width="1.6"/>
+              <circle cx="121" cy="117" r="6" fill="#ffffff" stroke="#111827" stroke-width="1.6"/>
+              <path d="M48 92 L98 144 L152 90" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M132 105 L149 87 M135 110 L152 93" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
+              <line x1="56" y1="145" x2="144" y2="145" stroke="#111827" stroke-width="2"/>
+            </svg>
+          </div>
+          <p id="uniNameText" class="font-bold text-sm text-white">جامعة عمار ثليجي</p>
+          <p id="uniLocationText" class="text-xs text-red-400 font-semibold mt-0.5">الأغواط – الجزائر</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم المكتب التنفيذي -->
+  <section id="board" class="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-b from-zinc-950 via-red-950/20 to-zinc-950">
+    <div class="absolute inset-0 halftone-red opacity-30 pointer-events-none"></div>
+    <div class="absolute top-1/3 -left-32 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 -right-32 w-80 h-80 bg-red-700/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-r-4 border-red-600 pr-4">
+        <div>
+          <span class="text-xs font-bold text-red-500">القيادة والتنظيم</span>
+          <h2 id="boardSectionTitle" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">أعضاء المكتب التنفيذي</h2>
+          <p class="text-sm text-zinc-300 mt-1">تعرف على أعضاء المكتب التنفيذي لنادي جسور الإعلام والاتصال وأدوارهم.</p>
+        </div>
+      </div>
+
+      <!-- قائمة أعضاء المكتب التنفيذي -->
+      <div id="executiveBoardList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+      <!-- لوحة المشرف لإضافة عضو جديد للمكتب التنفيذي -->
+      <form id="addMemberForm" class="admin-only hidden mt-10 glass-panel rounded-2xl p-5 border border-red-500/40 space-y-4">
+        <p class="text-xs font-extrabold text-red-400">إضافة عضو جديد إلى المكتب التنفيذي (من طرف المشرف)</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+          <input id="newMemberName" type="text" required placeholder="الاسم واللقب..." class="rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3.5 py-2 focus:outline-none focus:border-red-500" />
+          <input id="newMemberRole" type="text" required placeholder="المنصب (مثال: مسؤول الإعلام)" class="rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3.5 py-2 focus:outline-none focus:border-red-500" />
+          <input id="newMemberEmail" type="email" dir="ltr" placeholder="البريد الإلكتروني..." class="rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3.5 py-2 focus:outline-none focus:border-red-500" />
+          <input id="newMemberBio" type="text" placeholder="نبذة مختصرة عن المهام..." class="sm:col-span-2 rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3.5 py-2 focus:outline-none focus:border-red-500" />
+          <label class="cursor-pointer rounded-xl bg-red-600/20 hover:bg-red-600/35 border border-red-500/40 text-red-200 font-bold px-3 py-2 text-center transition">
+            رفع صورة العضو من الجهاز
+            <input id="newMemberPhotoFile" type="file" accept="image/*" class="hidden" />
+          </label>
+          <input id="newMemberQuote" type="text" placeholder="كلمة أو اقتباس للعضو..." class="sm:col-span-2 rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3.5 py-2 focus:outline-none focus:border-red-500" />
+          <button type="submit" class="px-4 py-2 rounded-xl glass-btn text-white font-extrabold transition">+ إضافة العضو إلى القائمة</button>
+        </div>
+        <p id="newMemberPhotoStatus" class="hidden text-[11px] font-bold text-emerald-400"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- قسم الإنتاج السمعي البصري وتوثيق النشاطات -->
+  <section id="audiovisual-hub" class="relative overflow-hidden py-16 bg-gradient-to-b from-black via-zinc-950 to-red-950/25 border-t border-red-900/35">
+    <div class="absolute inset-0 halftone-red opacity-30 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="border-r-4 border-red-600 pr-4">
+        <span class="text-xs font-bold text-red-500">المعرض السمعي البصري</span>
+        <h2 id="mediaSectionTitle" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">الإنتاج السمعي البصري وتوثيق النشاطات</h2>
+        <p class="text-sm text-zinc-300 mt-1">استعرض صور النشاطات وتغطيات وفيديوهات أعضاء النادي.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- خانة الصور -->
+        <div class="glass-panel rounded-3xl p-5 sm:p-6 border border-red-500/30 space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <h3 id="photoBoxTitleText" class="text-base font-extrabold text-white">صور النشاطات اليومية والمنظمين</h3>
+            <span id="photoCounter" class="text-xs font-bold text-red-300">0 / 0</span>
+          </div>
+          <div id="singlePhotoShowcase" class="aspect-video rounded-2xl bg-black/70 border border-zinc-800 flex items-center justify-center text-xs text-zinc-400 overflow-hidden"></div>
+          <p id="photoCaptionDisplay" class="text-xs text-zinc-300 min-h-[1rem]"></p>
+          <div class="flex items-center justify-between gap-2">
+            <button id="prevPhotoBtn" type="button" class="px-4 py-2 rounded-xl glass-btn text-white text-xs font-bold">السابق</button>
+            <button id="nextPhotoBtn" type="button" class="px-4 py-2 rounded-xl glass-btn text-white text-xs font-bold">التالي</button>
+          </div>
+          <div class="admin-only hidden pt-3 border-t border-red-900/35 space-y-2 text-xs">
+            <input id="adminPhotoFileInput" type="file" accept="image/*" multiple class="block w-full text-[11px] text-zinc-400 file:ml-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:font-bold file:bg-red-950 file:text-red-300" />
+            <input id="adminPhotoUrlInput" type="url" dir="ltr" placeholder="أو رابط صورة مباشر أو رابط منشور/ريلز إنستغرام..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-1.5" />
+            <input id="adminPhotoCaptionInput" type="text" placeholder="تعليق الصورة..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-1.5" />
+            <div class="flex items-center gap-2">
+              <button id="adminAddPhotoBtn" type="button" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold">+ إضافة صورة / صور</button>
+              <button id="deleteCurrentPhotoBtn" type="button" class="px-3 py-2 rounded-xl bg-red-950 hover:bg-red-700 text-red-200 font-bold">حذف الحالية</button>
+            </div>
+            <p id="adminPhotoFeedback" class="hidden text-[11px] font-bold text-emerald-400"></p>
+          </div>
+        </div>
+
+        <!-- خانة الفيديوهات -->
+        <div class="glass-panel rounded-3xl p-5 sm:p-6 border border-red-500/30 space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <h3 id="videoBoxTitleText" class="text-base font-extrabold text-white">فيديوهات وتغطيات أعضاء النادي</h3>
+            <span id="videoCounter" class="text-xs font-bold text-red-300">0 / 0</span>
+          </div>
+          <div id="singleVideoShowcase" class="aspect-video rounded-2xl bg-black/70 border border-zinc-800 flex items-center justify-center text-xs text-zinc-400 overflow-hidden"></div>
+          <p id="videoCaptionDisplay" class="text-xs text-zinc-300 min-h-[1rem]"></p>
+          <div class="flex items-center justify-between gap-2">
+            <button id="prevVideoBtn" type="button" class="px-4 py-2 rounded-xl glass-btn text-white text-xs font-bold">السابق</button>
+            <button id="nextVideoBtn" type="button" class="px-4 py-2 rounded-xl glass-btn text-white text-xs font-bold">التالي</button>
+          </div>
+          <div class="admin-only hidden pt-3 border-t border-red-900/35 space-y-2 text-xs">
+            <input id="adminVideoFileInput" type="file" accept="video/*" multiple class="block w-full text-[11px] text-zinc-400 file:ml-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:font-bold file:bg-red-950 file:text-red-300" />
+            <input id="adminVideoUrlInput" type="url" dir="ltr" placeholder="أو رابط فيديو مباشر / يوتيوب / ريلز إنستغرام..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-1.5" />
+            <input id="adminVideoCaptionInput" type="text" placeholder="عنوان أو وصف الفيديو..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-1.5" />
+            <div class="flex items-center gap-2">
+              <button id="adminAddVideoBtn" type="button" class="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold">+ إضافة فيديو / فيديوهات</button>
+              <button id="deleteCurrentVideoBtn" type="button" class="px-3 py-2 rounded-xl bg-red-950 hover:bg-red-700 text-red-200 font-bold">حذف الحالي</button>
+            </div>
+            <p id="adminVideoFeedback" class="hidden text-[11px] font-bold text-emerald-400"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم مستقل للورشات التكوينية لكل مجال -->
+  <section id="workshops-hub" class="relative overflow-hidden py-16 bg-gradient-to-b from-zinc-950 via-red-950/20 to-black border-t border-red-900/35">
+    <div class="absolute inset-0 halftone-red opacity-30 pointer-events-none"></div>
+    <div class="absolute top-12 -left-24 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-r-4 border-red-600 pr-4">
+        <div>
+          <span class="text-xs font-bold text-red-500">التكوين والممارسة لكل مجال</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">الورشات التكوينية</h2>
+          <p class="text-sm text-zinc-300 mt-1">هذه الورشات هي من برامجنا المخصصة لكل المهتمين — اضغط أو المس أي ورشة للانتقال مباشرة إلى استمارة الانضمام وتسجيل رغبتك فيها.</p>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-red-600/15 border border-red-500/30 text-xs font-bold text-red-300">من برامج النادي للمهتمين</span>
+      </div>
+
+      <!-- حاوية بطاقات الورشات -->
+      <div id="workshopsShowcaseGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+      <!-- لوحة المشرف لإضافة ورشة جديدة في قسم الورشات -->
+      <div class="admin-only hidden glass-panel rounded-2xl p-5 border border-red-500/40 space-y-3">
+        <p class="text-xs font-extrabold text-red-400">إضافة ورشة تكوينية جديدة (من طرف المشرف)</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <input id="newWorkshopFieldInput" type="text" placeholder="المجال (مثال: الصوت والبودكاست)" class="rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3.5 py-2 focus:outline-none focus:border-red-500" />
+          <input id="newWorkshopTitleInput" type="text" placeholder="عنوان الورشة التكوينية..." class="rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3.5 py-2 focus:outline-none focus:border-red-500" />
+          <div class="space-y-1.5">
+            <label class="block cursor-pointer rounded-xl bg-red-600/20 hover:bg-red-600/35 border border-red-500/40 text-red-200 font-bold px-3 py-1.5 text-center transition">
+              رفع صورة من الجهاز
+              <input id="newWorkshopFileInput" type="file" accept="image/*" class="hidden" />
+            </label>
+            <input id="newWorkshopImageInput" type="url" dir="ltr" placeholder="أو رابط صورة الورشة (https://...)" class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3 py-1.5 text-[11px] focus:outline-none focus:border-red-500" />
+          </div>
+          <button id="addWorkshopOptionBtn" type="button" class="px-4 py-2 rounded-xl glass-btn text-white font-extrabold transition">+ إضافة ورشة</button>
+        </div>
+        <p id="workshopUploadStatus" class="hidden text-[11px] font-bold text-emerald-400"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- استمارة الانضمام -->
+  <section id="join" class="relative overflow-hidden py-16 bg-gradient-to-t from-red-950/35 via-zinc-950 to-black border-t border-red-900/35">
+    <div class="absolute inset-0 halftone-red opacity-35 pointer-events-none"></div>
+    <div class="absolute -bottom-24 left-1/3 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="glass-panel rounded-3xl p-6 sm:p-10">
+        <div class="border-r-4 border-red-600 pr-4 mb-6">
+          <span class="text-xs font-bold text-red-500">عضوية النادي</span>
+          <h2 id="joinSectionTitle" class="text-2xl sm:text-3xl font-extrabold text-white mt-0.5">انضم إلى نادي جسور</h2>
+          <p class="text-sm text-zinc-400 mt-1">املأ بياناتك الجامعية ومهاراتك الإعلامية للانضمام إلى أسرة النادي.</p>
+        </div>
+
+        <form id="joinForm" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1">الاسم واللقب</label>
+              <input id="joinNameInput" type="text" required class="w-full rounded-xl bg-black/60 border border-zinc-700/80 text-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1">رقم الهاتف</label>
+              <input id="joinPhoneInput" type="tel" required class="w-full rounded-xl bg-black/60 border border-zinc-700/80 text-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1">البريد الإلكتروني</label>
+              <input id="joinEmailInput" type="email" required class="w-full rounded-xl bg-black/60 border border-zinc-700/80 text-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1">رقم التسجيل الجامعي</label>
+              <input id="joinMatriculeInput" type="text" required class="w-full rounded-xl bg-black/60 border border-zinc-700/80 text-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1">التخصص</label>
+              <input id="joinMajorInput" type="text" required class="w-full rounded-xl bg-black/60 border border-zinc-700/80 text-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-500" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-zinc-300 mb-1">السنة الجامعية</label>
+              <input id="joinYearInput" type="text" required class="w-full rounded-xl bg-black/60 border border-zinc-700/80 text-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-500" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-zinc-300 mb-2">المهارات (يمكن اختيار أكثر من مهارة بحرية)</label>
+            <div id="joinSkillsContainer" class="flex flex-wrap gap-2"></div>
+
+            <!-- تحكم المشرف في قائمة المهارات المتاحة -->
+            <div class="admin-only hidden mt-3 p-3 rounded-xl bg-black/50 border border-red-900/40 flex flex-wrap items-center gap-2 text-xs">
+              <input id="newSkillOptionInput" type="text" placeholder="إضافة مهارة أو مجال جديد..." class="flex-1 min-w-[160px] rounded-lg bg-zinc-950 border border-zinc-700 text-white px-3 py-1.5 focus:outline-none focus:border-red-500" />
+              <button id="addSkillOptionBtn" type="button" class="px-3 py-1.5 rounded-lg glass-btn text-white font-bold">+ إضافة مهارة</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-zinc-300 mb-1">لماذا تريد الانضمام إلى النادي؟</label>
+            <textarea id="joinReasonInput" rows="3" required class="w-full rounded-xl bg-black/60 border border-zinc-700/80 text-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-500"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-l from-red-600 via-red-500 to-red-700 hover:from-red-500 hover:to-red-600 border border-red-400/40 text-white font-extrabold text-sm transition shadow-lg shadow-red-600/30 backdrop-blur-md">
+            إرسال طلب الانضمام
+          </button>
+          <p id="joinStatusMsg" class="hidden text-xs font-bold text-emerald-300 bg-emerald-950/60 border border-emerald-700/50 rounded-xl p-3"></p>
+        </form>
+      </div>
+
+      <!-- قسم إدارة طلبات الانضمام (يظهر للمشرف فقط) -->
+      <div id="adminApplicationsPanel" class="admin-only hidden glass-panel rounded-3xl p-6 sm:p-8 border border-red-500/40 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-red-900/40 pb-3">
+          <div>
+            <h3 class="text-lg font-extrabold text-white">طلبات الانضمام المسجلة (خاص بالمشرف)</h3>
+            <p class="text-xs text-zinc-400">عرض، تصدير CSV، أو حذف الطلبات الواردة من الطلبة.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="exportAppsCsvBtn" type="button" class="px-3 py-1.5 rounded-xl glass-btn text-white text-xs font-bold">تصدير CSV</button>
+            <button id="clearAllAppsBtn" type="button" class="px-3 py-1.5 rounded-xl bg-red-950 hover:bg-red-800 border border-red-600/40 text-red-200 text-xs font-bold">مسح الكل</button>
+          </div>
+        </div>
+        <div id="applicationsListContainer" class="space-y-3 text-xs"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم الصفحات الرسمية للنادي والبريد الإلكتروني للتواصل -->
+  <section id="official-channels" class="relative overflow-hidden py-14 bg-gradient-to-b from-black via-zinc-950 to-red-950/30 border-t border-red-900/40">
+    <div class="absolute inset-0 halftone-red opacity-30 pointer-events-none"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="glass-panel rounded-3xl p-6 sm:p-8 border border-red-500/35 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div class="space-y-2 max-w-xl">
+          <span class="text-xs font-bold text-red-400">القنوات الرسمية والتواصل</span>
+          <h2 class="text-2xl font-extrabold text-white">تابع نادي جسور وتواصل معنا</h2>
+          <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            انتقل إلى منصات النادي الرسمية لمتابعة التغطيات والنشاطات، أو راسلنا مباشرة عبر البريد الإلكتروني الرسمي للنادي.
+          </p>
+          <div class="pt-2 flex flex-wrap items-center gap-2.5">
+            <a id="clubEmailLink" href="mailto:contact@bridges-laghouat.dz" dir="ltr" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/60 border border-red-500/35 text-xs font-bold text-red-300 hover:text-white hover:border-red-400 transition">
+              <span>✉</span>
+              <span id="clubEmailText">contact@bridges-laghouat.dz</span>
+            </a>
+            <button id="copyClubEmailBtn" type="button" class="px-3 py-2 rounded-xl glass-btn text-xs font-bold text-white transition">
+              نسخ البريد
+            </button>
+            <span id="copyClubEmailMsg" class="hidden text-xs font-bold text-emerald-400">تم النسخ!</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:w-auto">
+          <a id="socialFacebookLink" href="#" target="_blank" rel="noopener noreferrer" class="group rounded-2xl bg-black/55 hover:bg-[#1877F2]/15 border border-[#1877F2]/40 hover:border-[#1877F2] p-4 flex flex-col items-center justify-center text-center gap-1.5 transition">
+            <!-- أيقونة فيسبوك بلونها الرسمي -->
+            <span class="w-9 h-9 rounded-xl bg-[#1877F2]/20 border border-[#1877F2]/50 flex items-center justify-center text-[#1877F2] group-hover:bg-[#1877F2] group-hover:text-white transition">
+              <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
+                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+              </svg>
+            </span>
+            <span class="text-xs font-extrabold text-white">فيسبوك</span>
+            <span id="facebookStatusTag" class="text-[10px] font-bold text-emerald-400">رسمي</span>
+          </a>
+
+          <a id="socialInstagramLink" href="#" target="_blank" rel="noopener noreferrer" class="group rounded-2xl bg-black/55 hover:bg-pink-500/15 border border-pink-500/40 hover:border-pink-400 p-4 flex flex-col items-center justify-center text-center gap-1.5 transition">
+            <!-- أيقونة إنستغرام بتدرجها الرسمي -->
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] p-[1.5px] flex items-center justify-center shadow-sm">
+              <span class="w-full h-full rounded-[10px] bg-zinc-950/90 group-hover:bg-transparent flex items-center justify-center text-pink-400 group-hover:text-white transition">
+                <svg viewBox="0 0 24 24" class="w-5 h-5 fill-none stroke-current" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+              </span>
+            </span>
+            <span class="text-xs font-extrabold text-white">إنستغرام</span>
+            <span id="instagramStatusTag" class="text-[10px] font-bold text-emerald-400">رسمي</span>
+          </a>
+
+          <a id="socialTiktokLink" href="#" target="_blank" rel="noopener noreferrer" class="group rounded-2xl bg-black/55 hover:bg-cyan-400/10 border border-cyan-400/35 hover:border-pink-500 p-4 flex flex-col items-center justify-center text-center gap-1.5 transition">
+            <!-- أيقونة تيك توك بألوانها المميزة -->
+            <span class="w-9 h-9 rounded-xl bg-zinc-900 border border-white/15 flex items-center justify-center relative">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true">
+                <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.34-1.48Z" fill="#25F4EE"/>
+                <path d="M15.8 5.02A4.28 4.28 0 0 1 14.74 2.2h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V8.86c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V8.21a7.35 7.35 0 0 0 4.3 1.38V6.5s-1.88.09-3.34-1.48Z" fill="#FE2C55" opacity="0.85"/>
+                <path d="M16.2 5.42A4.28 4.28 0 0 1 15.14 2.6h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.26c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V8.61a7.35 7.35 0 0 0 4.3 1.38V6.9s-1.88.09-3.34-1.48Z" fill="#FFFFFF"/>
+              </svg>
+            </span>
+            <span class="text-xs font-extrabold text-white">تيك توك</span>
+            <span id="tiktokStatusTag" class="text-[10px] font-bold text-zinc-400">قريباً</span>
+          </a>
+
+          <a id="socialYoutubeLink" href="#" target="_blank" rel="noopener noreferrer" class="group rounded-2xl bg-black/55 hover:bg-[#FF0000]/15 border border-[#FF0000]/40 hover:border-[#FF0000] p-4 flex flex-col items-center justify-center text-center gap-1.5 transition">
+            <!-- أيقونة يوتيوب بلونها الرسمي -->
+            <span class="w-9 h-9 rounded-xl bg-[#FF0000]/20 border border-[#FF0000]/50 flex items-center justify-center text-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white transition">
+              <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </span>
+            <span class="text-xs font-extrabold text-white">يوتيوب</span>
+            <span id="youtubeStatusTag" class="text-[10px] font-bold text-zinc-400">قريباً</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- نافذة إدخال الرمز السري لوضع المشرف -->
+  <div id="adminModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-panel rounded-3xl max-w-sm w-full p-6 border border-red-500/40 space-y-4">
+      <div class="border-r-4 border-red-600 pr-3">
+        <h3 class="text-lg font-extrabold text-white">تفعيل وضع المشرف</h3>
+        <p class="text-xs text-zinc-400 mt-0.5">أدخل الرمز السري للوصول إلى أدوات التعديل والطلبات.</p>
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-zinc-300 mb-1">الرمز السري</label>
+        <input id="adminPassInput" type="password" placeholder="أدخل الرمز السري..." class="w-full rounded-xl bg-zinc-950 border border-zinc-700 text-white px-3.5 py-2.5 text-sm focus:outline-none focus:border-red-500" />
+        <p id="adminPassError" class="hidden text-xs font-bold text-red-400 mt-1.5">الرمز السري غير صحيح، حاول مرة أخرى.</p>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-1">
+        <button id="cancelAdminBtn" type="button" class="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-bold transition">إلغاء</button>
+        <button id="confirmAdminBtn" type="button" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-extrabold transition">تفعيل</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة عرض تفاصيل العضو الكاملة -->
+  <div id="memberProfileModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass-panel rounded-3xl max-w-lg w-full p-6 border border-red-500/40 space-y-4 relative">
+      <div id="modalMemberImg" class="hidden"></div>
+      <div class="flex items-center gap-4">
+        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-black border border-red-500/40 shrink-0 shadow-lg shadow-red-950/50">
+          <img id="modalMemberImg" src="" alt="" class="w-full h-full object-cover object-top" />
+        </div>
+        <div>
+          <span id="modalMemberRole" class="inline-block px-2.5 py-0.5 rounded-lg bg-red-600/25 border border-red-500/40 text-red-300 text-xs font-bold"></span>
+          <h3 id="modalMemberName" class="text-xl font-extrabold text-white mt-1"></h3>
+        </div>
+      </div>
+      <p id="modalMemberBio" class="text-xs sm:text-sm text-zinc-300 leading-relaxed"></p>
+      <blockquote id="modalMemberQuote" class="p-3.5 rounded-2xl bg-red-950/30 border border-red-500/25 text-xs sm:text-sm italic text-red-200"></blockquote>
+      <div class="pt-2 border-t border-red-900/35 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <a id="modalMemberEmailLink" href="#" dir="ltr" class="font-bold text-red-300 hover:text-white"></a>
+        <div class="flex items-center gap-2">
+          <button id="copyMemberEmailBtn" type="button" class="px-3 py-1.5 rounded-xl glass-btn text-white font-bold">نسخ البريد</button>
+          <a id="sendMemberEmailBtn" href="#" class="px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold">مراسلة</a>
+          <button id="closeMemberModalBtn" type="button" class="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 font-bold">إغلاق</button>
+        </div>
+      </div>
+      <p id="copyEmailFeedback" class="hidden text-xs font-bold text-emerald-400">تم نسخ البريد الإلكتروني!</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      function getAdminPasscode() {
+        try {
+          return localStorage.getItem('jusur_admin_passcode') || 'JUSUR2026';
+        } catch (e) {
+          return 'JUSUR2026';
+        }
+      }
+
+      function setAdminPasscode(code) {
+        try {
+          localStorage.setItem('jusur_admin_passcode', code);
+          refreshAdminPasscodeUI();
+        } catch (e) {
+          console.warn('تعذر حفظ الرمز السري:', e);
+        }
+      }
+
+      function refreshAdminPasscodeUI() {
+        const currentLabel = document.getElementById('currentAdminPasscodeLabel');
+        if (currentLabel) {
+          currentLabel.textContent = getAdminPasscode();
+        }
+      }
+
+      let isAdminAuthenticated = sessionStorage.getItem('jusur_admin_unlocked') === 'true';
+
+      // إعدادات الموقع العامة القابلة للتعديل بالكامل من طرف المشرف
+      const defaultSiteConfig = {
+        clubNameAr: 'نادي جسور الإعلام والاتصال',
+        uniSubtitle: 'جامعة عمار ثليجي – الأغواط',
+        brandMain: 'BRIDGES',
+        brandSub: 'MEDIA CLUB',
+        academicYear: '2026-2027',
+        heroBadge: 'المنصة الإعلامية الطلابية – جامعة عمار ثليجي بالأغواط',
+        heroTitle: 'نادي جسور الإعلام والاتصال',
+        heroDesc: 'فضاء جامعي لصناعة المحتوى الإعلامي، التغطيات الميدانية، والعمل الصحفي والسمعي البصري بروح الفريق والمبادرة الطلابية.',
+        presidentWelcomeName: 'جودي محمد وائل – رئيس النادي',
+        presidentWelcomeMsg: 'أهلاً بكم جميعاً في نادي جسور الإعلام والاتصال؛ نرحب بكل طلبة الجامعة من مختلف التخصصات، فالنادي لا يشترط تخصص الإعلام والاتصال للانضمام، بل يفتح أبوابه لكل شغوف يريد التعلم والممارسة وصناعة الأثر.',
+        uniName: 'جامعة عمار ثليجي',
+        uniLocation: 'الأغواط – الجزائر',
+        clubEmail: 'contact@bridges-laghouat.dz',
+        facebookUrl: '',
+        instagramUrl: '',
+        tiktokUrl: '',
+        youtubeUrl: '',
+        showComingSoonSocials: true,
+        boardTitle: 'أعضاء المكتب التنفيذي',
+        mediaTitle: 'الإنتاج السمعي البصري وتوثيق النشاطات',
+        photoBoxTitle: 'صور النشاطات اليومية والمنظمين',
+        videoBoxTitle: 'فيديوهات وتغطيات أعضاء النادي',
+        joinTitle: 'انضم إلى نادي جسور',
+        customClubLogo: '',
+        customUniLogo: '',
+        customTopOverlayPhoto: ''
+      };
+
+      function loadSiteConfig() {
+        try {
+          const raw = localStorage.getItem('jusur_site_config');
+          return raw ? { ...defaultSiteConfig, ...JSON.parse(raw) } : { ...defaultSiteConfig };
+        } catch (e) {
+          return { ...defaultSiteConfig };
+        }
+      }
+
+      function saveSiteConfig(cfg) {
+        try {
+          localStorage.setItem('jusur_site_config', JSON.stringify(cfg));
+        } catch (e) {
+          console.warn('تعذر حفظ إعدادات الموقع:', e);
+        }
+      }
+
+      let siteConfig = loadSiteConfig();
+
+      // بيانات أعضاء المكتب التنفيذي الافتراضية (7 أعضاء)
+      const defaultBoardMembers = [
+        {
+          id: 'president-joudi',
+          name: 'جودي محمد وائل',
+          role: 'رئيس النادي',
+          email: 'joudi.wael@bridges-laghouat.dz',
+          bio: 'قيادة رؤية نادي جسور الإعلام والاتصال وتنسيق مبادرات الطلبة الإعلامية بجامعة عمار ثليجي بالأغواط، والإشراف العام على المشاريع والتغطيات الكبرى.',
+          quote: 'نؤمن في نادي جسور أن الإعلام الجامعي رسالة ومسؤولية، وهدفنا بناء جسر حقيقي يربط طموح الطالب بالإبداع المهني.'
+        },
+        {
+          id: 'vp-benmahia',
+          name: 'بن مهية اية صوفيا',
+          role: 'نائبة رئيس النادي',
+          email: 'benmahia.sofia@bridges-laghouat.dz',
+          bio: 'متابعة تنفيذ البرامج الإعلامية والأنشطة الطلابية وضمان الانسجام التنظيمي داخل المكتب التنفيذي وتنسيق الورشات التكوينية.',
+          quote: 'العمل الجماعي وروح المبادرة هما سر نجاح كل مشروع إعلامي نطلقه داخل أسوار جامعتنا.'
+        },
+        {
+          id: 'sec-briche',
+          name: 'عيسى بريشي',
+          role: 'أمين مكتب',
+          email: 'briche.aissa@bridges-laghouat.dz',
+          bio: 'تنظيم الوثائق الإدارية، تحرير محاضر الاجتماعات، ومتابعة الجداول التنظيمية والتواصل الإداري للنادي.',
+          quote: 'التنظيم الدقيق هو الأساس الذي يمنح الأفكار الإبداعية مساحة لتتحول إلى واقع ملموس.'
+        },
+        {
+          id: 'member-zaabta',
+          name: 'زعابطة ايوب',
+          role: 'عضو مكتب مساعد',
+          email: 'zaabta.ayoub@bridges-laghouat.dz',
+          bio: 'المساهمة في التغطيات الميدانية وتنسيق فرق العمل خلال مختلف الفعاليات والتظاهرات الجامعية.',
+          quote: 'كل فعالية جامعية هي فرصة جديدة لاكتساب الخبرة وصناعة أثر إعلامي هادف.'
+        },
+        {
+          id: 'member-bounif',
+          name: 'بونيف نسيبة',
+          role: 'عضو مكتب مساعد',
+          email: 'bounif.noussaiba@bridges-laghouat.dz',
+          bio: 'دعم المحتوى الإعلامي والتحريري والمشاركة في إعداد وتنظيم أنشطة وفعاليات النادي.',
+          quote: 'الكلمة الصادقة والمحتوى الهادف يصنعان الفارق في المشهد الطلابي.'
+        },
+        {
+          id: 'member-bay',
+          name: 'باي مروى',
+          role: 'عضو مكتب مساعد',
+          email: 'bay.marwa@bridges-laghouat.dz',
+          bio: 'مواكبة المبادرات الإبداعية والتواصل مع الطلبة لإبراز طاقاتهم الإعلامية والفنية.',
+          quote: 'نفتح أبواب النادي لكل طالب شغوف يبحث عن مساحة للتعبير والتطور.'
+        },
+        {
+          id: 'member-sayah',
+          name: 'عبد الرحمان إبراهيم السايح',
+          role: 'عضو مكتب مساعد',
+          email: 'sayah.abderrahmane@bridges-laghouat.dz',
+          bio: 'المشاركة في الإنتاج السمعي البصري والتغطيات وتنظيم النشاطات اليومية للنادي.',
+          quote: 'الصورة والصوت هما لغة العصر، ونسعى لإتقانهما باحترافية وشغف.'
+        }
+      ];
+
+      function saveBoardMembersList(list) {
+        try {
+          localStorage.setItem('jusur_board_members_list', JSON.stringify(list));
+        } catch (e) {
+          console.warn('تعذر حفظ قائمة الأعضاء:', e);
+        }
+      }
+
+      function loadBoardMembers() {
+        try {
+          const saved = localStorage.getItem('jusur_board_members_list');
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length === 7) {
+              const valid = parsed.filter((m) => m && typeof m.name === 'string' && m.name.trim().length > 0);
+              if (valid.length === 7) return valid;
+            }
+          }
+        } catch (e) {
+          console.warn('تعذر تحميل قائمة الأعضاء المحفوظة:', e);
+        }
+        return defaultBoardMembers.map((m) => ({ ...m }));
+      }
+
+      let boardMembers = loadBoardMembers();
+
+      function setTextById(id, val) {
+        const el = document.getElementById(id);
+        if (el && typeof val === 'string') {
+          el.textContent = val;
+        }
+      }
+
+      function fillInput(id, val) {
+        const el = document.getElementById(id);
+        if (el && typeof val === 'string') {
+          el.value = val;
+        }
+      }
+
+      function normalizeSocialUrl(raw, platform) {
+        let v = String(raw || '').trim();
+        if (!v) return '';
+        if (/^https?:\/\//i.test(v)) return v;
+        if (/^www\./i.test(v)) return 'https://' + v;
+        v = v.replace(/^(?:m\.|web\.)?(?:facebook\.com|fb\.com|instagram\.com|tiktok\.com|youtube\.com|youtu\.be)\//i, 'https://www.$&');
+        if (/^https?:\/\//i.test(v)) return v;
+        const cleanHandle = v.replace(/^@+/, '').replace(/^\/+/, '');
+        if (!cleanHandle) return '';
+        if (platform === 'facebook') return 'https://www.facebook.com/' + cleanHandle;
+        if (platform === 'instagram') return 'https://www.instagram.com/' + cleanHandle;
+        if (platform === 'tiktok') return 'https://www.tiktok.com/@' + cleanHandle;
+        if (platform === 'youtube') {
+          if (v.trim().startsWith('@')) return 'https://www.youtube.com/' + v.trim().replace(/^\/+/, '');
+          return 'https://www.youtube.com/@' + cleanHandle;
+        }
+        return 'https://' + cleanHandle;
+      }
+
+      function applySocialLink(anchorId, tagId, rawUrl, platform) {
+        const anchor = document.getElementById(anchorId);
+        const tag = document.getElementById(tagId);
+        const normalized = normalizeSocialUrl(rawUrl, platform);
+        if (anchor) {
+          anchor.href = normalized || '#official-channels';
+          anchor.setAttribute('data-active-url', normalized);
+          if (normalized) {
+            anchor.classList.remove('opacity-60');
+          } else {
+            anchor.classList.add('opacity-60');
+          }
+        }
+        if (tag) {
+          if (normalized) {
+            tag.textContent = 'رسمي';
+            tag.className = 'text-[10px] font-bold text-emerald-400';
+          } else if (siteConfig.showComingSoonSocials) {
+            tag.textContent = 'قريباً';
+            tag.className = 'text-[10px] font-bold text-zinc-400';
+          } else {
+            tag.textContent = 'غير مفعّل';
+            tag.className = 'text-[10px] font-bold text-zinc-500';
+          }
+        }
+      }
+
+      function bindLiveSocialInputs() {
+        const map = [
+          { inputId: 'editFacebookUrl', key: 'facebookUrl' },
+          { inputId: 'editInstagramUrl', key: 'instagramUrl' },
+          { inputId: 'editTiktokUrl', key: 'tiktokUrl' },
+          { inputId: 'editYoutubeUrl', key: 'youtubeUrl' }
+        ];
+        map.forEach(({ inputId, key }) => {
+          const inp = document.getElementById(inputId);
+          if (!inp) return;
+          const syncSingle = () => {
+            siteConfig[key] = inp.value.trim();
+            saveSiteConfig(siteConfig);
+            applySocialLink('socialFacebookLink', 'facebookStatusTag', siteConfig.facebookUrl, 'facebook');
+            applySocialLink('socialInstagramLink', 'instagramStatusTag', siteConfig.instagramUrl, 'instagram');
+            applySocialLink('socialTiktokLink', 'tiktokStatusTag', siteConfig.tiktokUrl, 'tiktok');
+            applySocialLink('socialYoutubeLink', 'youtubeStatusTag', siteConfig.youtubeUrl, 'youtube');
+          };
+          inp.addEventListener('input', syncSingle);
+          inp.addEventListener('change', syncSingle);
+        });
+
+        ['socialFacebookLink', 'socialInstagramLink', 'socialTiktokLink', 'socialYoutubeLink'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.addEventListener('click', (e) => {
+            const activeUrl = el.getAttribute('data-active-url') || '';
+            if (!activeUrl) {
+              e.preventDefault();
+              if (isAdminAuthenticated) {
+                const panel = document.getElementById('adminGlobalSettingsPanel');
+                if (panel) panel.classList.remove('hidden');
+                document.getElementById('editFacebookUrl')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }
+          });
+        });
+      }
+
+      let activeModalMemberEmail = '';
+      function openMemberModal(id) {
+        const m = boardMembers.find((item) => item.id === id);
+        const modal = document.getElementById('memberProfileModal');
+        if (!m || !modal) return;
+        document.getElementById('modalMemberImg').src = getMemberAvatar(m);
+        document.getElementById('modalMemberRole').textContent = m.role;
+        document.getElementById('modalMemberName').textContent = m.name;
+        document.getElementById('modalMemberBio').textContent = m.bio;
+        document.getElementById('modalMemberQuote').textContent = m.quote ? `«${m.quote}»` : '';
+        activeModalMemberEmail = m.email || siteConfig.clubEmail;
+        const emailLink = document.getElementById('modalMemberEmailLink');
+        const sendBtn = document.getElementById('sendMemberEmailBtn');
+        if (emailLink) {
+          emailLink.textContent = activeModalMemberEmail;
+          emailLink.href = 'mailto:' + activeModalMemberEmail;
+        }
+        if (sendBtn) sendBtn.href = 'mailto:' + activeModalMemberEmail;
+        const fb = document.getElementById('copyEmailFeedback');
+        if (fb) fb.classList.add('hidden');
+        modal.classList.remove('hidden');
+      }
+
+      document.getElementById('closeMemberModalBtn')?.addEventListener('click', () => {
+        document.getElementById('memberProfileModal')?.classList.add('hidden');
+      });
+
+      document.getElementById('copyMemberEmailBtn')?.addEventListener('click', () => {
+        if (!activeModalMemberEmail) return;
+        const tmp = document.createElement('textarea');
+        tmp.value = activeModalMemberEmail;
+        document.body.appendChild(tmp);
+        tmp.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(tmp);
+        const fb = document.getElementById('copyEmailFeedback');
+        if (fb) fb.classList.remove('hidden');
+      });
+
+      // الأرشيف السمعي البصري
+      const defaultPhotos = [
+        { src: 'https://placehold.co/960x540/18181b/ef4444?text=JUSUR+WORKSHOPS', caption: 'لقاءات وورشات نادي جسور بجامعة عمار ثليجي بالأغواط' },
+        { src: 'https://placehold.co/960x540/18181b/f87171?text=FIELD+COVERAGE', caption: 'تغطية إعلامية للأنشطة والفعاليات الجامعية' }
+      ];
+      const defaultVideos = [];
+
+      function loadMediaList(key, fallback) {
+        try {
+          const raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : fallback.slice();
+        } catch (e) {
+          return fallback.slice();
+        }
+      }
+
+      function saveMediaList(key, list) {
+        try {
+          localStorage.setItem(key, JSON.stringify(list));
+          return true;
+        } catch (e) {
+          console.warn('تعذر حفظ الأرشيف بسبب سعة التخزين المحلي:', e);
+          return false;
+        }
+      }
+
+      function showMediaFeedback(elId, msg, isError) {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        el.textContent = msg;
+        el.className = `text-[11px] font-bold ${isError ? 'text-red-400' : 'text-emerald-400'}`;
+        el.classList.remove('hidden');
+        setTimeout(() => el.classList.add('hidden'), 3200);
+      }
+
+      function getInstagramEmbedUrl(rawUrl) {
+        if (!rawUrl) return '';
+        const match = String(rawUrl).match(/instagram\.com\/(?:[^/?#]+\/)?(p|reel|tv)\/([A-Za-z0-9_-]+)/i);
+        if (!match) return '';
+        const type = match[1].toLowerCase() === 'tv' ? 'p' : match[1].toLowerCase();
+        return `https://www.instagram.com/${type}/${match[2]}/embed`;
+      }
+
+      function compressArchiveImage(file, callback) {
+        if (!file || typeof callback !== 'function') return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              const maxW = 1000;
+              const maxH = 750;
+              let w = img.width || maxW;
+              let h = img.height || maxH;
+              const ratio = Math.min(maxW / w, maxH / h, 1);
+              w = Math.round(w * ratio);
+              h = Math.round(h * ratio);
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                ctx.drawImage(img, 0, 0, w, h);
+                callback(canvas.toDataURL('image/jpeg', 0.78));
+                return;
+              }
+            } catch (err) {
+              console.warn('تعذر ضغط صورة الأرشيف:', err);
+            }
+            callback(String(reader.result || ''));
+          };
+          img.onerror = () => callback(String(reader.result || ''));
+          img.src = String(reader.result || '');
+        };
+        reader.onerror = () => callback('');
+        reader.readAsDataURL(file);
+      }
+
+      let photosList = loadMediaList('jusur_photos_list', defaultPhotos);
+      let videosList = loadMediaList('jusur_videos_list', defaultVideos);
+      let photoIdx = 0;
+      let videoIdx = 0;
+
+      function renderPhotoShowcase() {
+        const box = document.getElementById('singlePhotoShowcase');
+        const cap = document.getElementById('photoCaptionDisplay');
+        const cnt = document.getElementById('photoCounter');
+        if (!box || !cnt) return;
+        if (!photosList.length) {
+          box.innerHTML = 'لا توجد صور مضافة بعد — يظهر الأرشيف هنا عند إضافة الصور.';
+          if (cap) cap.textContent = '';
+          cnt.textContent = '0 / 0';
+          return;
+        }
+        if (photoIdx >= photosList.length) photoIdx = 0;
+        if (photoIdx < 0) photoIdx = photosList.length - 1;
+        const item = photosList[photoIdx];
+        const igEmbed = getInstagramEmbedUrl(item.src);
+        if (igEmbed) {
+          box.innerHTML = `<iframe src="${igEmbed}" class="w-full h-full bg-white" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>`;
+        } else {
+          box.innerHTML = `<img src="${item.src}" alt="${item.caption || 'صورة'}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/960x540/18181b/ef4444?text=JUSUR';" />`;
+        }
+        if (cap) cap.textContent = item.caption || '';
+        cnt.textContent = `${photoIdx + 1} / ${photosList.length}`;
+      }
+
+      function getEmbedVideoHtml(src) {
+        const ytMatch = src.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([A-Za-z0-9_-]{6,})/);
+        if (ytMatch) {
+          return `<iframe src="https://www.youtube.com/embed/${ytMatch[1]}" class="w-full h-full" allowfullscreen></iframe>`;
+        }
+        const igEmbed = getInstagramEmbedUrl(src);
+        if (igEmbed) {
+          return `<iframe src="${igEmbed}" class="w-full h-full bg-white" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>`;
+        }
+        return `<video src="${src}" controls class="w-full h-full object-cover"></video>`;
+      }
+
+      function renderVideoShowcase() {
+        const box = document.getElementById('singleVideoShowcase');
+        const cap = document.getElementById('videoCaptionDisplay');
+        const cnt = document.getElementById('videoCounter');
+        if (!box || !cnt) return;
+        if (!videosList.length) {
+          box.innerHTML = 'لا توجد فيديوهات مضافة بعد — تظهر التغطيات المرئية هنا.';
+          if (cap) cap.textContent = '';
+          cnt.textContent = '0 / 0';
+          return;
+        }
+        if (videoIdx >= videosList.length) videoIdx = 0;
+        if (videoIdx < 0) videoIdx = videosList.length - 1;
+        const item = videosList[videoIdx];
+        box.innerHTML = getEmbedVideoHtml(item.src);
+        if (cap) cap.textContent = item.caption || '';
+        cnt.textContent = `${videoIdx + 1} / ${videosList.length}`;
+      }
+
+      document.getElementById('prevPhotoBtn')?.addEventListener('click', () => { photoIdx--; renderPhotoShowcase(); });
+      document.getElementById('nextPhotoBtn')?.addEventListener('click', () => { photoIdx++; renderPhotoShowcase(); });
+      document.getElementById('prevVideoBtn')?.addEventListener('click', () => { videoIdx--; renderVideoShowcase(); });
+      document.getElementById('nextVideoBtn')?.addEventListener('click', () => { videoIdx++; renderVideoShowcase(); });
+
+      document.getElementById('adminAddPhotoBtn')?.addEventListener('click', () => {
+        const fileInp = document.getElementById('adminPhotoFileInput');
+        const urlInp = document.getElementById('adminPhotoUrlInput');
+        const capInp = document.getElementById('adminPhotoCaptionInput');
+        const caption = capInp ? capInp.value.trim() : '';
+        const files = fileInp && fileInp.files ? Array.from(fileInp.files) : [];
+        const rawUrl = urlInp ? urlInp.value.trim() : '';
+
+        if (files.length > 0) {
+          let addedCount = 0;
+          let failedStorage = false;
+          let processed = 0;
+
+          files.forEach((file, index) => {
+            compressArchiveImage(file, (compressedSrc) => {
+              processed++;
+              if (compressedSrc) {
+                const label = files.length > 1
+                  ? (caption ? `${caption} (${index + 1})` : `صورة ${index + 1}`)
+                  : caption;
+                photosList.push({ src: compressedSrc, caption: label });
+                if (saveMediaList('jusur_photos_list', photosList)) {
+                  addedCount++;
+                } else {
+                  photosList.pop();
+                  failedStorage = true;
+                }
+              }
+              if (processed === files.length) {
+                if (addedCount > 0) {
+                  photoIdx = photosList.length - 1;
+                  renderPhotoShowcase();
+                  if (urlInp) urlInp.value = '';
+                  if (capInp) capInp.value = '';
+                  if (fileInp) fileInp.value = '';
+                  showMediaFeedback(
+                    'adminPhotoFeedback',
+                    failedStorage
+                      ? `تمت إضافة ${addedCount} صورة، وبعض الصور تجاوزت سعة التخزين المحلي.`
+                      : `تمت إضافة وحفظ ${addedCount} ${addedCount === 1 ? 'صورة' : 'صور'} بنجاح!`,
+                    failedStorage
+                  );
+                } else {
+                  showMediaFeedback('adminPhotoFeedback', 'تعذر حفظ الصور (قد تكون سعة التخزين المحلي ممتلئة).', true);
+                }
+              }
+            });
+          });
+          return;
+        }
+
+        if (rawUrl) {
+          photosList.push({ src: rawUrl, caption });
+          if (saveMediaList('jusur_photos_list', photosList)) {
+            photoIdx = photosList.length - 1;
+            renderPhotoShowcase();
+            if (urlInp) urlInp.value = '';
+            if (capInp) capInp.value = '';
+            showMediaFeedback('adminPhotoFeedback', 'تمت إضافة الرابط وحفظه في المعرض بنجاح!', false);
+          } else {
+            photosList.pop();
+            showMediaFeedback('adminPhotoFeedback', 'تعذر حفظ الرابط في التخزين المحلي.', true);
+          }
+          return;
+        }
+
+        showMediaFeedback('adminPhotoFeedback', 'يرجى اختيار صورة أو أكثر أو إدخال رابط أولاً.', true);
+      });
+
+      document.getElementById('deleteCurrentPhotoBtn')?.addEventListener('click', () => {
+        if (!photosList.length) return;
+        photosList.splice(photoIdx, 1);
+        saveMediaList('jusur_photos_list', photosList);
+        renderPhotoShowcase();
+        showMediaFeedback('adminPhotoFeedback', 'تم حذف الصورة الحالية.', false);
+      });
+
+      document.getElementById('adminAddVideoBtn')?.addEventListener('click', () => {
+        const fileInp = document.getElementById('adminVideoFileInput');
+        const urlInp = document.getElementById('adminVideoUrlInput');
+        const capInp = document.getElementById('adminVideoCaptionInput');
+        const caption = capInp ? capInp.value.trim() : '';
+        const files = fileInp && fileInp.files ? Array.from(fileInp.files) : [];
+        const rawUrl = urlInp ? urlInp.value.trim() : '';
+
+        if (files.length > 0) {
+          let addedCount = 0;
+          let skippedLarge = 0;
+          let processed = 0;
+
+          files.forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              processed++;
+              const src = String(reader.result || '');
+              const label = files.length > 1
+                ? (caption ? `${caption} (${index + 1})` : `فيديو ${index + 1}`)
+                : caption;
+              if (src) {
+                videosList.push({ src, caption: label });
+                if (saveMediaList('jusur_videos_list', videosList)) {
+                  addedCount++;
+                } else {
+                  videosList.pop();
+                  skippedLarge++;
+                }
+              }
+              if (processed === files.length) {
+                if (addedCount > 0) {
+                  videoIdx = videosList.length - 1;
+                  renderVideoShowcase();
+                  if (urlInp) urlInp.value = '';
+                  if (capInp) capInp.value = '';
+                  if (fileInp) fileInp.value = '';
+                  showMediaFeedback(
+                    'adminVideoFeedback',
+                    skippedLarge > 0
+                      ? `تم حفظ ${addedCount} فيديو، وتجاوز ${skippedLarge} فيديو لكبر حجمه في المتصفح (يُفضّل رابط يوتيوب أو إنستغرام للفيديوهات الكبيرة).`
+                      : `تمت إضافة وحفظ ${addedCount} ${addedCount === 1 ? 'فيديو' : 'فيديوهات'} بنجاح!`,
+                    skippedLarge > 0
+                  );
+                } else {
+                  showMediaFeedback('adminVideoFeedback', 'حجم الفيديو كبير جداً على التخزين المحلي؛ استخدم رابط يوتيوب أو إنستغرام أو فيديو أقصر.', true);
+                }
+              }
+            };
+            reader.onerror = () => {
+              processed++;
+              skippedLarge++;
+              if (processed === files.length && addedCount === 0) {
+                showMediaFeedback('adminVideoFeedback', 'تعذر قراءة ملف الفيديو.', true);
+              }
+            };
+            reader.readAsDataURL(file);
+          });
+          return;
+        }
+
+        if (rawUrl) {
+          videosList.push({ src: rawUrl, caption });
+          if (saveMediaList('jusur_videos_list', videosList)) {
+            videoIdx = videosList.length - 1;
+            renderVideoShowcase();
+            if (urlInp) urlInp.value = '';
+            if (capInp) capInp.value = '';
+            showMediaFeedback('adminVideoFeedback', 'تمت إضافة رابط الفيديو بنجاح!', false);
+          } else {
+            videosList.pop();
+            showMediaFeedback('adminVideoFeedback', 'تعذر حفظ الرابط في التخزين المحلي.', true);
+          }
+          return;
+        }
+
+        showMediaFeedback('adminVideoFeedback', 'يرجى اختيار فيديو أو أكثر أو إدخال رابط أولاً.', true);
+      });
+
+      document.getElementById('deleteCurrentVideoBtn')?.addEventListener('click', () => {
+        if (!videosList.length) return;
+        videosList.splice(videoIdx, 1);
+        saveMediaList('jusur_videos_list', videosList);
+        renderVideoShowcase();
+        showMediaFeedback('adminVideoFeedback', 'تم حذف الفيديو الحالي.', false);
+      });
+
+      document.getElementById('deleteCurrentPhotoBtn')?.addEventListener('click', () => {
+        if (!photosList.length) return;
+        photosList.splice(photoIdx, 1);
+        saveMediaList('jusur_photos_list', photosList);
+        renderPhotoShowcase();
+      });
+
+      document.getElementById('adminAddVideoBtn')?.addEventListener('click', () => {
+        const fileInp = document.getElementById('adminVideoFileInput');
+        const urlInp = document.getElementById('adminVideoUrlInput');
+        const capInp = document.getElementById('adminVideoCaptionInput');
+        const caption = capInp ? capInp.value.trim() : '';
+        const file = fileInp && fileInp.files && fileInp.files[0];
+
+        const pushVideo = (src) => {
+          if (!src) return;
+          videosList.push({ src, caption });
+          saveMediaList('jusur_videos_list', videosList);
+          videoIdx = videosList.length - 1;
+          renderVideoShowcase();
+          if (urlInp) urlInp.value = '';
+          if (capInp) capInp.value = '';
+          if (fileInp) fileInp.value = '';
+        };
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = () => pushVideo(String(reader.result || ''));
+          reader.readAsDataURL(file);
+        } else if (urlInp && urlInp.value.trim()) {
+          pushVideo(urlInp.value.trim());
+        }
+      });
+
+      document.getElementById('deleteCurrentVideoBtn')?.addEventListener('click', () => {
+        if (!videosList.length) return;
+        videosList.splice(videoIdx, 1);
+        saveMediaList('jusur_videos_list', videosList);
+        renderVideoShowcase();
+      });
+
+      // الورشات التكوينية
+      const defaultWorkshops = [
+        { id: 'ws-1', field: 'الصحافة والإعلام', title: 'ورشة التحرير الصحفي والتغطية الميدانية', image: 'https://placehold.co/640x360/18181b/ef4444?text=PRESS+%26+MEDIA' },
+        { id: 'ws-2', field: 'التصوير والمونتاج', title: 'ورشة التصوير الفوتوغرافي وإنتاج الفيديو', image: 'https://placehold.co/640x360/18181b/f87171?text=PHOTO+%26+VIDEO' },
+        { id: 'ws-3', field: 'التصميم والمحتوى', title: 'ورشة التصميم الجرافيكي وصناعة المحتوى الرقمي', image: 'https://placehold.co/640x360/18181b/dc2626?text=DESIGN+%26+CONTENT' },
+        { id: 'ws-4', field: 'الإلقاء والتقديم', title: 'ورشة التقديم الإعلامي وفن الإلقاء أمام الكاميرا', image: 'https://placehold.co/640x360/18181b/fca5a5?text=PRESENTATION+%26+VOICE' }
+      ];
+
+      function loadWorkshops() {
+        try {
+          const raw = localStorage.getItem('jusur_workshops_list');
+          const parsed = raw ? JSON.parse(raw) : null;
+          return Array.isArray(parsed) && parsed.length ? parsed : defaultWorkshops.slice();
+        } catch (e) {
+          return defaultWorkshops.slice();
+        }
+      }
+
+      function saveWorkshops(list) {
+        try {
+          localStorage.setItem('jusur_workshops_list', JSON.stringify(list));
+        } catch (e) {
+          console.warn('تعذر حفظ الورشات:', e);
+        }
+      }
+
+      let workshopsList = loadWorkshops();
+      let pendingNewWorkshopImage = '';
+
+      function compressWorkshopImage(file, callback) {
+        if (!file || typeof callback !== 'function') return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              const maxW = 800;
+              const maxH = 500;
+              let w = img.width || maxW;
+              let h = img.height || maxH;
+              const ratio = Math.min(maxW / w, maxH / h, 1);
+              w = Math.round(w * ratio);
+              h = Math.round(h * ratio);
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                ctx.drawImage(img, 0, 0, w, h);
+                callback(canvas.toDataURL('image/jpeg', 0.82));
+                return;
+              }
+            } catch (err) {
+              console.warn('تعذر ضغط صورة الورشة:', err);
+            }
+            callback(String(reader.result || ''));
+          };
+          img.onerror = () => callback(String(reader.result || ''));
+          img.src = String(reader.result || '');
+        };
+        reader.onerror = () => callback('');
+        reader.readAsDataURL(file);
+      }
+
+      function showWorkshopStatus(msg) {
+        const el = document.getElementById('workshopUploadStatus');
+        if (!el || !msg) return;
+        el.textContent = msg;
+        el.classList.remove('hidden');
+        setTimeout(() => el.classList.add('hidden'), 2500);
+      }
+
+      document.getElementById('newWorkshopFileInput')?.addEventListener('change', (e) => {
+        const file = e.target && e.target.files && e.target.files[0];
+        if (!file) return;
+        compressWorkshopImage(file, (dataUrl) => {
+          pendingNewWorkshopImage = dataUrl;
+          const urlInp = document.getElementById('newWorkshopImageInput');
+          if (urlInp) urlInp.value = '';
+          showWorkshopStatus('تم تجهيز صورة الورشة الجديدة، اضغط "+ إضافة ورشة" للحفظ.');
+        });
+        e.target.value = '';
+      });
+
+      function renderWorkshops() {
+        const grid = document.getElementById('workshopsShowcaseGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        workshopsList.forEach((ws) => {
+          const card = document.createElement('div');
+          card.className = 'glass-panel rounded-2xl overflow-hidden border border-red-500/25 hover:border-red-500/60 flex flex-col justify-between transition cursor-pointer';
+          card.innerHTML = `
+            <div data-go-join="${ws.field}">
+              <div class="aspect-video bg-zinc-900 overflow-hidden">
+                <img src="${ws.image || 'https://placehold.co/640x360/18181b/ef4444?text=WORKSHOP'}" alt="${ws.title}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/640x360/18181b/ef4444?text=WORKSHOP';" />
+              </div>
+              <div class="p-4">
+                <span class="inline-block px-2.5 py-0.5 rounded-lg bg-red-600/20 border border-red-500/30 text-red-300 text-[11px] font-bold">${ws.field}</span>
+                <h3 class="text-sm font-extrabold text-white mt-1.5 leading-snug">${ws.title}</h3>
+              </div>
+            </div>
+
+            <div class="admin-only ${isAdminAuthenticated ? '' : 'hidden'} px-4 pb-4 pt-2 border-t border-red-900/30 space-y-2 text-[11px]">
+              <input type="text" data-ws-field="${ws.id}" value="${ws.field}" placeholder="المجال" class="w-full rounded-lg bg-zinc-950 border border-zinc-700 text-white px-2.5 py-1" />
+              <input type="text" data-ws-title="${ws.id}" value="${ws.title}" placeholder="عنوان الورشة" class="w-full rounded-lg bg-zinc-950 border border-zinc-700 text-white px-2.5 py-1" />
+              <label class="block w-full cursor-pointer rounded-lg bg-red-600/20 hover:bg-red-600/35 border border-red-500/40 text-red-200 font-bold py-1 text-center transition">
+                رفع صورة من الجهاز
+                <input type="file" accept="image/*" data-ws-file="${ws.id}" class="hidden" />
+              </label>
+              <input type="url" dir="ltr" data-ws-img="${ws.id}" value="${(ws.image && !ws.image.startsWith('data:')) ? ws.image : ''}" placeholder="أو رابط صورة" class="w-full rounded-lg bg-zinc-950 border border-zinc-700 text-white px-2.5 py-1" />
+              <div class="flex items-center justify-between gap-2">
+                <button type="button" data-ws-save="${ws.id}" class="flex-1 py-1 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white font-bold">حفظ</button>
+                <button type="button" data-ws-del="${ws.id}" class="px-3 py-1 rounded-lg bg-red-950 hover:bg-red-700 text-red-200 font-bold">حذف</button>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+
+        grid.querySelectorAll('[data-go-join]').forEach((el) => {
+          el.addEventListener('click', () => {
+            const field = el.getAttribute('data-go-join');
+            const reasonEl = document.getElementById('joinReasonInput');
+            if (reasonEl && field && !reasonEl.value.includes(field)) {
+              reasonEl.value = (reasonEl.value ? reasonEl.value + ' - ' : '') + `مهتم بـ: ${field}`;
+            }
+            document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' });
+          });
+        });
+
+        grid.querySelectorAll('[data-ws-file]').forEach((fileInp) => {
+          fileInp.addEventListener('change', (e) => {
+            e.stopPropagation();
+            const id = fileInp.getAttribute('data-ws-file');
+            const file = e.target && e.target.files && e.target.files[0];
+            const ws = workshopsList.find((item) => item.id === id);
+            if (!file || !ws) return;
+            compressWorkshopImage(file, (dataUrl) => {
+              if (!dataUrl) return;
+              ws.image = dataUrl;
+              saveWorkshops(workshopsList);
+              renderWorkshops();
+              showWorkshopStatus('تم تحديث صورة الورشة وحفظها بنجاح.');
+            });
+            e.target.value = '';
+          });
+        });
+
+        grid.querySelectorAll('[data-ws-save]').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.getAttribute('data-ws-save');
+            const ws = workshopsList.find((item) => item.id === id);
+            if (!ws) return;
+            const fEl = grid.querySelector(`[data-ws-field="${id}"]`);
+            const tEl = grid.querySelector(`[data-ws-title="${id}"]`);
+            const iEl = grid.querySelector(`[data-ws-img="${id}"]`);
+            if (fEl && fEl.value.trim()) ws.field = fEl.value.trim();
+            if (tEl && tEl.value.trim()) ws.title = tEl.value.trim();
+            if (iEl && iEl.value.trim()) ws.image = iEl.value.trim();
+            saveWorkshops(workshopsList);
+            renderWorkshops();
+            showWorkshopStatus('تم حفظ تعديلات الورشة.');
+          });
+        });
+
+        grid.querySelectorAll('[data-ws-del]').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.getAttribute('data-ws-del');
+            workshopsList = workshopsList.filter((item) => item.id !== id);
+            saveWorkshops(workshopsList);
+            renderWorkshops();
+          });
+        });
+      }
+
+      document.getElementById('addWorkshopOptionBtn')?.addEventListener('click', () => {
+        const fInp = document.getElementById('newWorkshopFieldInput');
+        const tInp = document.getElementById('newWorkshopTitleInput');
+        const iInp = document.getElementById('newWorkshopImageInput');
+        const field = fInp ? fInp.value.trim() : '';
+        const title = tInp ? tInp.value.trim() : '';
+        const imageUrl = iInp ? iInp.value.trim() : '';
+        if (!field || !title) return;
+        workshopsList.push({
+          id: 'ws-' + Date.now(),
+          field,
+          title,
+          image: pendingNewWorkshopImage || imageUrl || 'https://placehold.co/640x360/18181b/ef4444?text=WORKSHOP'
+        });
+        pendingNewWorkshopImage = '';
+        saveWorkshops(workshopsList);
+        if (fInp) fInp.value = '';
+        if (tInp) tInp.value = '';
+        if (iInp) iInp.value = '';
+        renderWorkshops();
+        showWorkshopStatus('تمت إضافة الورشة بنجاح.');
+      });
+
+      // المهارات والاستمارة وطلبات الانضمام
+      const defaultSkills = ['التقديم الإعلامي', 'الصحافة والتحرير', 'التصوير الفوتوغرافي', 'المونتاج وإنتاج الفيديو', 'التصميم الجرافيكي', 'إدارة مواقع التواصل'];
+
+      function loadSkills() {
+        try {
+          const raw = localStorage.getItem('jusur_skills_list');
+          const parsed = raw ? JSON.parse(raw) : null;
+          return Array.isArray(parsed) && parsed.length ? parsed : defaultSkills.slice();
+        } catch (e) {
+          return defaultSkills.slice();
+        }
+      }
+
+      function saveSkills(list) {
+        try {
+          localStorage.setItem('jusur_skills_list', JSON.stringify(list));
+        } catch (e) {
+          console.warn('تعذر حفظ المهارات:', e);
+        }
+      }
+
+      let skillsList = loadSkills();
+      let selectedSkills = [];
+
+      function renderSkills() {
+        const wrap = document.getElementById('joinSkillsContainer');
+        if (!wrap) return;
+        wrap.innerHTML = '';
+        skillsList.forEach((sk) => {
+          const active = selectedSkills.includes(sk);
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = sk;
+          btn.className = active
+            ? 'px-3.5 py-1.5 rounded-xl bg-red-600 border border-red-400 text-white text-xs font-extrabold transition'
+            : 'px-3.5 py-1.5 rounded-xl bg-black/60 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-bold transition';
+          btn.addEventListener('click', () => {
+            if (selectedSkills.includes(sk)) selectedSkills = selectedSkills.filter((x) => x !== sk);
+            else selectedSkills.push(sk);
+            renderSkills();
+          });
+          wrap.appendChild(btn);
+        });
+      }
+
+      document.getElementById('addSkillOptionBtn')?.addEventListener('click', () => {
+        const inp = document.getElementById('newSkillOptionInput');
+        const val = inp ? inp.value.trim() : '';
+        if (!val || skillsList.includes(val)) return;
+        skillsList.push(val);
+        saveSkills(skillsList);
+        if (inp) inp.value = '';
+        renderSkills();
+      });
+
+      function loadApplications() {
+        try {
+          const raw = localStorage.getItem('jusur_join_applications');
+          const parsed = raw ? JSON.parse(raw) : null;
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveApplications(list) {
+        try {
+          localStorage.setItem('jusur_join_applications', JSON.stringify(list));
+        } catch (e) {
+          console.warn('تعذر حفظ الطلبات:', e);
+        }
+      }
+
+      let applicationsList = loadApplications();
+
+      function renderApplications() {
+        const badge = document.getElementById('adminAppsCountBadge');
+        if (badge) badge.textContent = String(applicationsList.length);
+
+        const container = document.getElementById('applicationsListContainer');
+        if (!container) return;
+        if (!applicationsList.length) {
+          container.innerHTML = '<p class="text-zinc-400">لا توجد طلبات انضمام مسجلة حالياً.</p>';
+          return;
+        }
+        container.innerHTML = '';
+        applicationsList.forEach((app, idx) => {
+          const row = document.createElement('div');
+          row.className = 'p-4 rounded-2xl bg-black/55 border border-red-900/35 flex flex-col sm:flex-row sm:items-center justify-between gap-3';
+          row.innerHTML = `
+            <div class="space-y-1">
+              <p class="font-extrabold text-white text-sm">${idx + 1}. ${app.name} <span class="text-xs font-normal text-zinc-400">(${app.major || ''} - ${app.year || ''})</span></p>
+              <p class="text-zinc-300">الهاتف: <span dir="ltr">${app.phone || '-'}</span> | البريد: <span dir="ltr">${app.email || '-'}</span> | رقم التسجيل: <span dir="ltr">${app.matricule || '-'}</span></p>
+              <p class="text-red-300">المهارات: ${(app.skills && app.skills.length) ? app.skills.join('، ') : 'غير محددة'}</p>
+              <p class="text-zinc-400">الدافع: ${app.reason || '-'}</p>
+            </div>
+            <button type="button" data-del-app="${app.id}" class="shrink-0 px-3 py-1.5 rounded-xl bg-red-950 hover:bg-red-700 border border-red-600/40 text-red-200 font-bold">حذف</button>
+          `;
+          container.appendChild(row);
+        });
+
+        container.querySelectorAll('[data-del-app]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-del-app');
+            applicationsList = applicationsList.filter((item) => String(item.id) !== String(id));
+            saveApplications(applicationsList);
+            renderApplications();
+          });
+        });
+      }
+
+      document.getElementById('joinForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entry = {
+          id: Date.now(),
+          name: document.getElementById('joinNameInput')?.value.trim() || '',
+          phone: document.getElementById('joinPhoneInput')?.value.trim() || '',
+          email: document.getElementById('joinEmailInput')?.value.trim() || '',
+          matricule: document.getElementById('joinMatriculeInput')?.value.trim() || '',
+          major: document.getElementById('joinMajorInput')?.value.trim() || '',
+          year: document.getElementById('joinYearInput')?.value.trim() || '',
+          skills: selectedSkills.slice(),
+          reason: document.getElementById('joinReasonInput')?.value.trim() || '',
+          submittedAt: new Date().toLocaleString('ar-DZ')
+        };
+        applicationsList.unshift(entry);
+        saveApplications(applicationsList);
+        renderApplications();
+
+        e.target.reset();
+        selectedSkills = [];
+        renderSkills();
+
+        const msg = document.getElementById('joinStatusMsg');
+        if (msg) {
+          msg.textContent = 'تم تسجيل طلب انضمامك بنجاح! سيقوم المكتب التنفيذي بمراجعته والتواصل معك.';
+          msg.classList.remove('hidden');
+        }
+      });
+
+      document.getElementById('exportAppsCsvBtn')?.addEventListener('click', () => {
+        if (!applicationsList.length) return;
+        const headers = ['الاسم', 'الهاتف', 'البريد', 'رقم التسجيل', 'التخصص', 'السنة', 'المهارات', 'الدافع', 'التاريخ'];
+        const lines = [headers.join(',')];
+        applicationsList.forEach((a) => {
+          const row = [a.name, a.phone, a.email, a.matricule, a.major, a.year, (a.skills || []).join(' / '), a.reason, a.submittedAt]
+            .map((v) => `"${String(v || '').replace(/"/g, '""')}"`);
+          lines.push(row.join(','));
+        });
+        const blob = new Blob(['\uFEFF' + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'jusur_applications.csv';
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+
+      document.getElementById('clearAllAppsBtn')?.addEventListener('click', () => {
+        applicationsList = [];
+        saveApplications(applicationsList);
+        renderApplications();
+      });
+
+      // التحكم بوضع المشرف ونافذة الرمز السري
+      function syncAdminUI() {
+        const banner = document.getElementById('adminStatusBanner');
+        const toggleBtn = document.getElementById('adminToggleBtn');
+        if (banner) {
+          if (isAdminAuthenticated) banner.classList.remove('hidden');
+          else banner.classList.add('hidden');
+        }
+        if (toggleBtn) {
+          toggleBtn.textContent = isAdminAuthenticated ? 'المشرف نشط' : 'وضع المشرف';
+        }
+        document.querySelectorAll('.admin-only').forEach((el) => {
+          if (isAdminAuthenticated) el.classList.remove('hidden');
+          else el.classList.add('hidden');
+        });
+        renderBoard();
+        renderWorkshops();
+        renderApplications();
+      }
+
+      function openAdminModal() {
+        const modal = document.getElementById('adminModal');
+        const input = document.getElementById('adminPassInput');
+        const err = document.getElementById('adminPassError');
+        if (err) err.classList.add('hidden');
+        if (input) input.value = '';
+        if (modal) {
+          modal.classList.remove('hidden');
+          setTimeout(() => input && input.focus(), 50);
+        }
+      }
+
+      document.getElementById('adminToggleBtn')?.addEventListener('click', () => {
+        if (isAdminAuthenticated) {
+          const panel = document.getElementById('adminGlobalSettingsPanel');
+          if (panel) panel.classList.toggle('hidden');
+        } else {
+          openAdminModal();
+        }
+      });
+
+      document.getElementById('cancelAdminBtn')?.addEventListener('click', () => {
+        document.getElementById('adminModal')?.classList.add('hidden');
+      });
+
+      function verifyAdminPasscode() {
+        const input = document.getElementById('adminPassInput');
+        const err = document.getElementById('adminPassError');
+        const modal = document.getElementById('adminModal');
+        const entered = input ? input.value.trim() : '';
+        if (entered === getAdminPasscode()) {
+          isAdminAuthenticated = true;
+          try { sessionStorage.setItem('jusur_admin_unlocked', 'true'); } catch (e) {}
+          if (err) err.classList.add('hidden');
+          if (modal) modal.classList.add('hidden');
+          syncAdminUI();
+        } else if (err) {
+          err.classList.remove('hidden');
+        }
+      }
+
+      document.getElementById('confirmAdminBtn')?.addEventListener('click', verifyAdminPasscode);
+      document.getElementById('adminPassInput')?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          verifyAdminPasscode();
+        }
+      });
+
+      document.getElementById('adminLogoutBtn')?.addEventListener('click', () => {
+        isAdminAuthenticated = false;
+        try { sessionStorage.removeItem('jusur_admin_unlocked'); } catch (e) {}
+        document.getElementById('adminGlobalSettingsPanel')?.classList.add('hidden');
+        syncAdminUI();
+      });
+
+      document.getElementById('toggleSiteEditorBtn')?.addEventListener('click', () => {
+        document.getElementById('adminGlobalSettingsPanel')?.classList.toggle('hidden');
+      });
+
+      document.getElementById('jumpToApplicationsBtn')?.addEventListener('click', () => {
+        document.getElementById('adminApplicationsPanel')?.scrollIntoView({ behavior: 'smooth' });
+      });
+
+      function applySiteConfigToDOM() {
+        setTextById('headerClubNameAr', siteConfig.clubNameAr);
+        setTextById('headerUniSubtitle', siteConfig.uniSubtitle);
+        setTextById('headerBrandMain', siteConfig.brandMain);
+        setTextById('headerBrandSub', siteConfig.brandSub);
+        setTextById('heroBadgeLabel', siteConfig.heroBadge);
+        setTextById('heroBrandMain', siteConfig.brandMain);
+        setTextById('heroBrandSub', siteConfig.brandSub);
+        setTextById('heroAcademicYearBadge', siteConfig.academicYear);
+        setTextById('heroTitleText', siteConfig.heroTitle);
+        setTextById('heroDescText', siteConfig.heroDesc);
+        setTextById('presidentWelcomeAuthor', siteConfig.presidentWelcomeName);
+        setTextById('presidentWelcomeText', siteConfig.presidentWelcomeMsg);
+        setTextById('uniNameText', siteConfig.uniName);
+        setTextById('uniLocationText', siteConfig.uniLocation);
+        setTextById('boardSectionTitle', siteConfig.boardTitle);
+        setTextById('mediaSectionTitle', siteConfig.mediaTitle);
+        setTextById('photoBoxTitleText', siteConfig.photoBoxTitle);
+        setTextById('videoBoxTitleText', siteConfig.videoBoxTitle);
+        setTextById('joinSectionTitle', siteConfig.joinTitle);
+        setTextById('clubEmailText', siteConfig.clubEmail);
+
+        const emailLink = document.getElementById('clubEmailLink');
+        if (emailLink) {
+          emailLink.href = 'mailto:' + (siteConfig.clubEmail || 'contact@bridges-laghouat.dz');
+        }
+
+        const headerImg = document.getElementById('headerCustomLogoImg');
+        const headerSvg = document.getElementById('headerDefaultLogoSvg');
+        const heroImg = document.getElementById('heroCustomLogoImg');
+        const heroSvg = document.getElementById('heroDefaultLogoSvg');
+        if (siteConfig.customClubLogo) {
+          if (headerImg) { headerImg.src = siteConfig.customClubLogo; headerImg.classList.remove('hidden'); }
+          if (headerSvg) headerSvg.classList.add('hidden');
+          if (heroImg) { heroImg.src = siteConfig.customClubLogo; heroImg.classList.remove('hidden'); }
+          if (heroSvg) heroSvg.classList.add('hidden');
+        } else {
+          if (headerImg) headerImg.classList.add('hidden');
+          if (headerSvg) headerSvg.classList.remove('hidden');
+          if (heroImg) heroImg.classList.add('hidden');
+          if (heroSvg) heroSvg.classList.remove('hidden');
+        }
+
+        const uniImg = document.getElementById('customUniLogoImg');
+        const uniSvg = document.getElementById('defaultUniLogoSvg');
+        if (siteConfig.customUniLogo) {
+          if (uniImg) { uniImg.src = siteConfig.customUniLogo; uniImg.classList.remove('hidden'); }
+          if (uniSvg) uniSvg.classList.add('hidden');
+        } else {
+          if (uniImg) uniImg.classList.add('hidden');
+          if (uniSvg) uniSvg.classList.remove('hidden');
+        }
+
+        const topOverlayPhoto = document.getElementById('topOverlayPhoto');
+        if (topOverlayPhoto && siteConfig.customTopOverlayPhoto) {
+          topOverlayPhoto.src = siteConfig.customTopOverlayPhoto;
+        }
+
+        applySocialLink('socialFacebookLink', 'facebookStatusTag', siteConfig.facebookUrl, 'facebook');
+        applySocialLink('socialInstagramLink', 'instagramStatusTag', siteConfig.instagramUrl, 'instagram');
+        applySocialLink('socialTiktokLink', 'tiktokStatusTag', siteConfig.tiktokUrl, 'tiktok');
+        applySocialLink('socialYoutubeLink', 'youtubeStatusTag', siteConfig.youtubeUrl, 'youtube');
+
+        fillInput('editClubNameAr', siteConfig.clubNameAr);
+        fillInput('editBrandMain', siteConfig.brandMain);
+        fillInput('editBrandSub', siteConfig.brandSub);
+        fillInput('editHeroBadge', siteConfig.heroBadge);
+        fillInput('editHeroTitle', siteConfig.heroTitle);
+        fillInput('editUniName', siteConfig.uniName);
+        fillInput('editUniLocation', siteConfig.uniLocation);
+        fillInput('editAcademicYear', siteConfig.academicYear);
+        fillInput('editHeroDesc', siteConfig.heroDesc);
+        fillInput('editPresidentWelcomeName', siteConfig.presidentWelcomeName);
+        fillInput('editPresidentWelcomeMsg', siteConfig.presidentWelcomeMsg);
+        fillInput('editClubEmail', siteConfig.clubEmail);
+        fillInput('editFacebookUrl', siteConfig.facebookUrl);
+        fillInput('editInstagramUrl', siteConfig.instagramUrl);
+        fillInput('editTiktokUrl', siteConfig.tiktokUrl);
+        fillInput('editYoutubeUrl', siteConfig.youtubeUrl);
+        fillInput('editBoardTitle', siteConfig.boardTitle);
+        fillInput('editMediaTitle', siteConfig.mediaTitle);
+        fillInput('editPhotoBoxTitle', siteConfig.photoBoxTitle);
+        fillInput('editVideoBoxTitle', siteConfig.videoBoxTitle);
+        fillInput('editJoinTitle', siteConfig.joinTitle);
+        fillInput('topOverlayPhotoUrlInput', siteConfig.customTopOverlayPhoto || '');
+
+        const cb = document.getElementById('editShowComingSoonSocials');
+        if (cb) cb.checked = Boolean(siteConfig.showComingSoonSocials);
+      }
+
+      function getMemberAvatar(m) {
+        return m.photo || 'https://placehold.co/400x400/18181b/ef4444?text=' + encodeURIComponent((m.name || 'MEMBER').slice(0, 8));
+      }
+
+      function compressMemberPhoto(file, callback) {
+        if (!file || typeof callback !== 'function') return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              const maxSize = 600;
+              let w = img.width || maxSize;
+              let h = img.height || maxSize;
+              const ratio = Math.min(maxSize / w, maxSize / h, 1);
+              w = Math.round(w * ratio);
+              h = Math.round(h * ratio);
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                ctx.drawImage(img, 0, 0, w, h);
+                callback(canvas.toDataURL('image/jpeg', 0.84));
+                return;
+              }
+            } catch (err) {
+              console.warn('تعذر ضغط صورة العضو:', err);
+            }
+            callback(String(reader.result || ''));
+          };
+          img.onerror = () => callback(String(reader.result || ''));
+          img.src = String(reader.result || '');
+        };
+        reader.onerror = () => callback('');
+        reader.readAsDataURL(file);
+      }
+
+      let pendingNewMemberPhoto = '';
+
+      document.getElementById('newMemberPhotoFile')?.addEventListener('change', (e) => {
+        const file = e.target && e.target.files && e.target.files[0];
+        if (!file) return;
+        compressMemberPhoto(file, (dataUrl) => {
+          pendingNewMemberPhoto = dataUrl;
+          const st = document.getElementById('newMemberPhotoStatus');
+          if (st) {
+            st.textContent = 'تم تجهيز صورة العضو، اضغط "+ إضافة العضو إلى القائمة" للحفظ.';
+            st.classList.remove('hidden');
+          }
+        });
+        e.target.value = '';
+      });
+
+      function renderBoard() {
+        const listEl = document.getElementById('executiveBoardList');
+        if (!listEl) return;
+        listEl.innerHTML = '';
+        boardMembers.forEach((m) => {
+          const card = document.createElement('div');
+          card.className = 'glass-member-card rounded-3xl p-5 flex flex-col justify-between transition duration-300';
+          card.innerHTML = `
+            <div>
+              <div class="w-full aspect-square rounded-2xl overflow-hidden bg-black border border-red-500/35 mb-4 shadow-lg shadow-black/50">
+                <img src="${getMemberAvatar(m)}" alt="${m.name}" class="w-full h-full object-cover object-top transition-transform duration-300 hover:scale-105" />
+              </div>
+              <div class="mb-3">
+                <span class="inline-block px-2.5 py-0.5 rounded-lg bg-red-600/20 border border-red-500/30 text-red-300 text-[11px] font-bold">${m.role}</span>
+                <h3 class="text-base font-extrabold text-white mt-1">${m.name}</h3>
+              </div>
+              <p class="text-xs text-zinc-300 leading-relaxed line-clamp-3">${m.bio || ''}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-red-900/30 space-y-2.5">
+              ${isAdminAuthenticated ? `
+                <div class="space-y-1.5">
+                  <label class="block text-[10px] font-bold text-zinc-400">البريد الإلكتروني للتواصل مع العضو:</label>
+                  <div class="flex items-center gap-1.5">
+                    <input type="email" dir="ltr" data-member-email-input="${m.id}" value="${m.email || ''}" placeholder="member@bridges-laghouat.dz" class="flex-1 min-w-0 rounded-xl bg-zinc-950 border border-zinc-700 text-white px-2.5 py-1.5 text-[11px] focus:outline-none focus:border-red-500" />
+                    <button type="button" data-save-member-email="${m.id}" class="shrink-0 px-2.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-[11px] font-bold transition">حفظ</button>
+                  </div>
+                </div>
+                <label class="block w-full cursor-pointer rounded-xl bg-red-600/20 hover:bg-red-600/35 border border-red-500/40 text-red-200 text-[11px] font-bold py-1.5 text-center transition">
+                  رفع / تغيير صورة العضو
+                  <input type="file" accept="image/*" data-member-photo-file="${m.id}" class="hidden" />
+                </label>
+              ` : ''}
+              <div class="flex items-center justify-between gap-2">
+                <button type="button" data-open-member="${m.id}" class="flex-1 py-2 rounded-xl glass-btn text-white text-xs font-bold transition">
+                  التفاصيل والكلمة
+                </button>
+                ${isAdminAuthenticated ? `
+                  <button type="button" data-del-member="${m.id}" class="px-3 py-2 rounded-xl bg-red-950 hover:bg-red-700 border border-red-600/40 text-red-200 text-xs font-bold transition">
+                    حذف
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+          `;
+          listEl.appendChild(card);
+        });
+
+        listEl.querySelectorAll('[data-save-member-email]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-save-member-email');
+            const member = boardMembers.find((item) => item.id === id);
+            const inp = listEl.querySelector(`[data-member-email-input="${id}"]`);
+            if (!member || !inp) return;
+            member.email = inp.value.trim();
+            saveBoardMembersList(boardMembers);
+            renderBoard();
+          });
+        });
+
+        listEl.querySelectorAll('[data-member-photo-file]').forEach((fileInp) => {
+          fileInp.addEventListener('change', (e) => {
+            const id = fileInp.getAttribute('data-member-photo-file');
+            const file = e.target && e.target.files && e.target.files[0];
+            const member = boardMembers.find((item) => item.id === id);
+            if (!file || !member) return;
+            compressMemberPhoto(file, (dataUrl) => {
+              if (!dataUrl) return;
+              member.photo = dataUrl;
+              saveBoardMembersList(boardMembers);
+              renderBoard();
+            });
+            e.target.value = '';
+          });
+        });
+
+        listEl.querySelectorAll('[data-open-member]').forEach((btn) => {
+          btn.addEventListener('click', () => openMemberModal(btn.getAttribute('data-open-member')));
+        });
+
+        listEl.querySelectorAll('[data-del-member]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-del-member');
+            boardMembers = boardMembers.filter((item) => item.id !== id);
+            saveBoardMembersList(boardMembers);
+            renderBoard();
+          });
+        });
+      }
+
+      // حفظ إعدادات الموقع العامة
+      document.getElementById('saveGlobalSettingsBtn')?.addEventListener('click', () => {
+        const readVal = (id, fallback) => {
+          const el = document.getElementById(id);
+          return el ? el.value.trim() : fallback;
+        };
+        siteConfig.clubNameAr = readVal('editClubNameAr', siteConfig.clubNameAr);
+        siteConfig.brandMain = readVal('editBrandMain', siteConfig.brandMain);
+        siteConfig.brandSub = readVal('editBrandSub', siteConfig.brandSub);
+        siteConfig.heroBadge = readVal('editHeroBadge', siteConfig.heroBadge);
+        siteConfig.heroTitle = readVal('editHeroTitle', siteConfig.heroTitle);
+        siteConfig.uniName = readVal('editUniName', siteConfig.uniName);
+        siteConfig.uniLocation = readVal('editUniLocation', siteConfig.uniLocation);
+        siteConfig.uniSubtitle = `${siteConfig.uniName} – ${siteConfig.uniLocation.split('–')[0].trim()}`;
+        siteConfig.academicYear = readVal('editAcademicYear', siteConfig.academicYear);
+        siteConfig.heroDesc = readVal('editHeroDesc', siteConfig.heroDesc);
+        siteConfig.presidentWelcomeName = readVal('editPresidentWelcomeName', siteConfig.presidentWelcomeName);
+        siteConfig.presidentWelcomeMsg = readVal('editPresidentWelcomeMsg', siteConfig.presidentWelcomeMsg);
+        siteConfig.clubEmail = readVal('editClubEmail', siteConfig.clubEmail);
+        siteConfig.facebookUrl = normalizeSocialUrl(readVal('editFacebookUrl', ''), 'facebook');
+        siteConfig.instagramUrl = normalizeSocialUrl(readVal('editInstagramUrl', ''), 'instagram');
+        siteConfig.tiktokUrl = normalizeSocialUrl(readVal('editTiktokUrl', ''), 'tiktok');
+        siteConfig.youtubeUrl = normalizeSocialUrl(readVal('editYoutubeUrl', ''), 'youtube');
+        siteConfig.boardTitle = readVal('editBoardTitle', siteConfig.boardTitle);
+        siteConfig.mediaTitle = readVal('editMediaTitle', siteConfig.mediaTitle);
+        siteConfig.photoBoxTitle = readVal('editPhotoBoxTitle', siteConfig.photoBoxTitle);
+        siteConfig.videoBoxTitle = readVal('editVideoBoxTitle', siteConfig.videoBoxTitle);
+        siteConfig.joinTitle = readVal('editJoinTitle', siteConfig.joinTitle);
+        const cb = document.getElementById('editShowComingSoonSocials');
+        siteConfig.showComingSoonSocials = cb ? Boolean(cb.checked) : true;
+
+        saveSiteConfig(siteConfig);
+        applySiteConfigToDOM();
+
+        const fb = document.getElementById('globalSettingsFeedback');
+        if (fb) {
+          fb.textContent = 'تم حفظ جميع إعدادات وروابط الموقع بنجاح!';
+          fb.classList.remove('hidden');
+          setTimeout(() => fb.classList.add('hidden'), 2500);
+        }
+      });
+      // تحديث رمز المشرف (كلمة السر) بصلاحيات كاملة
+      function showPasscodeFeedback(msg, isSuccess) {
+        const el = document.getElementById('passcodeAdminFeedback');
+        if (!el) return;
+        el.textContent = msg;
+        el.className = `text-[11px] font-bold ${isSuccess ? 'text-emerald-400' : 'text-red-400'}`;
+        el.classList.remove('hidden');
+        setTimeout(() => el.classList.add('hidden'), 3000);
+      }
+
+      document.getElementById('toggleShowPasscodeCb')?.addEventListener('change', (e) => {
+        const type = e.target && e.target.checked ? 'text' : 'password';
+        const p1 = document.getElementById('newAdminPasscodeInput');
+        const p2 = document.getElementById('confirmAdminPasscodeInput');
+        if (p1) p1.type = type;
+        if (p2) p2.type = type;
+      });
+
+      document.getElementById('updateAdminPasscodeBtn')?.addEventListener('click', () => {
+        const inp = document.getElementById('newAdminPasscodeInput');
+        const confInp = document.getElementById('confirmAdminPasscodeInput');
+        const val = inp ? inp.value.trim() : '';
+        const confVal = confInp ? confInp.value.trim() : '';
+        if (!val) {
+          showPasscodeFeedback('يرجى إدخال رمز المشرف الجديد أولاً.', false);
+          return;
+        }
+        if (val.length < 4) {
+          showPasscodeFeedback('يجب أن يتكون الرمز السري من 4 أحرف أو أرقام على الأقل.', false);
+          return;
+        }
+        if (confInp && confVal !== val) {
+          showPasscodeFeedback('الرمزان غير متطابقين، يرجى إعادة التأكيد.', false);
+          return;
+        }
+        setAdminPasscode(val);
+        if (inp) inp.value = '';
+        if (confInp) confInp.value = '';
+        showPasscodeFeedback('تم تحديث كلمة سر المشرف بنجاح!', true);
+      });
+
+      document.getElementById('resetDefaultPasscodeBtn')?.addEventListener('click', () => {
+        setAdminPasscode('JUSUR2026');
+        const inp = document.getElementById('newAdminPasscodeInput');
+        const confInp = document.getElementById('confirmAdminPasscodeInput');
+        if (inp) inp.value = '';
+        if (confInp) confInp.value = '';
+        showPasscodeFeedback('تمت استعادة الرمز الافتراضي (JUSUR2026).', true);
+      });
+
+      function bindImageFileUpload(inputId, configKey) {
+        const fileEl = document.getElementById(inputId);
+        if (!fileEl) return;
+        fileEl.addEventListener('change', (e) => {
+          const file = e.target && e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            siteConfig[configKey] = String(reader.result || '');
+            saveSiteConfig(siteConfig);
+            applySiteConfigToDOM();
+          };
+          reader.readAsDataURL(file);
+          e.target.value = '';
+        });
+      }
+
+      bindImageFileUpload('uploadCustomClubLogo', 'customClubLogo');
+      bindImageFileUpload('uploadCustomUniLogo', 'customUniLogo');
+
+      // رفع صورة خلفية الفريق من جهاز المشرف مع ضغط تلقائي وحفظ فوري
+      function showTeamOverlayStatus(msg) {
+        const el = document.getElementById('teamCardUploadMsg');
+        const panelEl = document.getElementById('topOverlayUploadStatus');
+        [el, panelEl].forEach((node) => {
+          if (!node) return;
+          node.textContent = msg;
+          node.classList.remove('hidden');
+          setTimeout(() => node.classList.add('hidden'), 2600);
+        });
+      }
+
+      function compressOverlayPhoto(file, callback) {
+        if (!file || typeof callback !== 'function') return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const img = new Image();
+          img.onload = () => {
+            try {
+              const canvas = document.createElement('canvas');
+              const maxW = 1400;
+              const maxH = 900;
+              let w = img.width || maxW;
+              let h = img.height || maxH;
+              const ratio = Math.min(maxW / w, maxH / h, 1);
+              w = Math.round(w * ratio);
+              h = Math.round(h * ratio);
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext('2d');
+              if (ctx) {
+                ctx.drawImage(img, 0, 0, w, h);
+                callback(canvas.toDataURL('image/jpeg', 0.82));
+                return;
+              }
+            } catch (err) {
+              console.warn('تعذر ضغط صورة الفريق:', err);
+            }
+            callback(String(reader.result || ''));
+          };
+          img.onerror = () => callback(String(reader.result || ''));
+          img.src = String(reader.result || '');
+        };
+        reader.onerror = () => callback('');
+        reader.readAsDataURL(file);
+      }
+
+      function applyTeamOverlayImage(src) {
+        siteConfig.customTopOverlayPhoto = src || '';
+        saveSiteConfig(siteConfig);
+        const topOverlayPhoto = document.getElementById('topOverlayPhoto');
+        if (topOverlayPhoto) {
+          topOverlayPhoto.src = src || 'https://placehold.co/1600x900/18181b/ef4444?text=BRIDGES+MEDIA+CLUB+TEAM';
+        }
+        fillInput('topOverlayPhotoUrlInput', src && !src.startsWith('data:') ? src : '');
+      }
+
+      ['teamCardPhotoFileInput', 'uploadTopOverlayPhoto'].forEach((inputId) => {
+        document.getElementById(inputId)?.addEventListener('change', (e) => {
+          const file = e.target && e.target.files && e.target.files[0];
+          if (!file) return;
+          compressOverlayPhoto(file, (dataUrl) => {
+            if (!dataUrl) return;
+            applyTeamOverlayImage(dataUrl);
+            showTeamOverlayStatus('تم رفع وحفظ صورة الفريق على المنصة بنجاح!');
+          });
+          e.target.value = '';
+        });
+      });
+
+      document.getElementById('topOverlayPhotoUrlInput')?.addEventListener('change', (e) => {
+        const val = e.target && e.target.value ? e.target.value.trim() : '';
+        applyTeamOverlayImage(val);
+        if (val) showTeamOverlayStatus('تم تحديث صورة الفريق من الرابط بنجاح!');
+      });
+
+      ['teamCardResetPhotoBtn', 'resetTopOverlayPhotoBtn'].forEach((btnId) => {
+        document.getElementById(btnId)?.addEventListener('click', () => {
+          applyTeamOverlayImage('');
+          showTeamOverlayStatus('تمت إعادة ضبط صورة الفريق إلى الافتراضي.');
+        });
+      });
+
+      document.getElementById('resetClubLogoBtn')?.addEventListener('click', () => {
+        siteConfig.customClubLogo = '';
+        saveSiteConfig(siteConfig);
+        applySiteConfigToDOM();
+      });
+
+      document.getElementById('resetUniLogoBtn')?.addEventListener('click', () => {
+        siteConfig.customUniLogo = '';
+        saveSiteConfig(siteConfig);
+        applySiteConfigToDOM();
+      });
+
+      // تحديث رمز المشرف
+      document.getElementById('updateAdminPasscodeBtn')?.addEventListener('click', () => {
+        const inp = document.getElementById('newAdminPasscodeInput');
+        const val = inp ? inp.value.trim() : '';
+        if (!val) return;
+        setAdminPasscode(val);
+        if (inp) inp.value = '';
+        const fb = document.getElementById('globalSettingsFeedback');
+        if (fb) {
+          fb.textContent = 'تم تحديث رمز المشرف السري!';
+          fb.classList.remove('hidden');
+          setTimeout(() => fb.classList.add('hidden'), 2500);
+        }
+      });
+
+      // تصدير واستيراد وإعادة ضبط المصنع
+      document.getElementById('exportSiteDataBtn')?.addEventListener('click', () => {
+        const backup = {
+          siteConfig,
+          boardMembers,
+          workshopsList,
+          skillsList,
+          photosList,
+          videosList,
+          applicationsList
+        };
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'jusur_site_backup.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      document.getElementById('importSiteDataInput')?.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const data = JSON.parse(String(reader.result || '{}'));
+            if (data.siteConfig) { siteConfig = { ...defaultSiteConfig, ...data.siteConfig }; saveSiteConfig(siteConfig); }
+            if (Array.isArray(data.boardMembers)) { boardMembers = data.boardMembers; saveBoardMembersList(boardMembers); }
+            if (Array.isArray(data.workshopsList)) { workshopsList = data.workshopsList; saveWorkshops(workshopsList); }
+            if (Array.isArray(data.skillsList)) { skillsList = data.skillsList; saveSkills(skillsList); }
+            if (Array.isArray(data.photosList)) { photosList = data.photosList; saveMediaList('jusur_photos_list', photosList); }
+            if (Array.isArray(data.videosList)) { videosList = data.videosList; saveMediaList('jusur_videos_list', videosList); }
+            if (Array.isArray(data.applicationsList)) { applicationsList = data.applicationsList; saveApplications(applicationsList); }
+            applySiteConfigToDOM();
+            renderSkills();
+            renderPhotoShowcase();
+            renderVideoShowcase();
+            syncAdminUI();
+          } catch (err) {
+            console.warn('ملف النسخة الاحتياطية غير صالح:', err);
+          }
+        };
+        reader.readAsText(file);
+      });
+
+      document.getElementById('resetAllSiteDataBtn')?.addEventListener('click', () => {
+        try {
+          Object.keys(localStorage).forEach((k) => {
+            if (k.startsWith('jusur_')) localStorage.removeItem(k);
+          });
+        } catch (e) {}
+        siteConfig = { ...defaultSiteConfig };
+        boardMembers = defaultBoardMembers.map((m) => ({ ...m }));
+        workshopsList = defaultWorkshops.slice();
+        skillsList = defaultSkills.slice();
+        photosList = defaultPhotos.slice();
+        videosList = defaultVideos.slice();
+        applicationsList = [];
+        applySiteConfigToDOM();
+        renderSkills();
+        renderPhotoShowcase();
+        renderVideoShowcase();
+        syncAdminUI();
+      });
+
+      // إضافة عضو جديد من لوحة المشرف
+      document.getElementById('addMemberForm')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('newMemberName')?.value.trim() || '';
+        const role = document.getElementById('newMemberRole')?.value.trim() || '';
+        const email = document.getElementById('newMemberEmail')?.value.trim() || '';
+        const bio = document.getElementById('newMemberBio')?.value.trim() || '';
+        const quote = document.getElementById('newMemberQuote')?.value.trim() || '';
+        if (!name || !role) return;
+        boardMembers.push({
+          id: 'member-' + Date.now(),
+          name,
+          role,
+          email,
+          bio,
+          quote,
+          photo: pendingNewMemberPhoto || ''
+        });
+        pendingNewMemberPhoto = '';
+        const st = document.getElementById('newMemberPhotoStatus');
+        if (st) st.classList.add('hidden');
+        saveBoardMembersList(boardMembers);
+        e.target.reset();
+        renderBoard();
+      });
+
+      // نسخ البريد الرسمي للنادي
+      document.getElementById('copyClubEmailBtn')?.addEventListener('click', () => {
+        const email = siteConfig.clubEmail || 'contact@bridges-laghouat.dz';
+        const tmp = document.createElement('textarea');
+        tmp.value = email;
+        document.body.appendChild(tmp);
+        tmp.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(tmp);
+        const msg = document.getElementById('copyClubEmailMsg');
+        if (msg) {
+          msg.classList.remove('hidden');
+          setTimeout(() => msg.classList.add('hidden'), 2000);
+        }
+      });
+
+      // تهيئة أولية شاملة
+      refreshAdminPasscodeUI();
+      applySiteConfigToDOM();
+      bindLiveSocialInputs();
+      renderBoard();
+      renderWorkshops();
+      renderSkills();
+      renderPhotoShowcase();
+      renderVideoShowcase();
+      syncAdminUI();
+    })();
+  </script>
+</body>
+</html>
